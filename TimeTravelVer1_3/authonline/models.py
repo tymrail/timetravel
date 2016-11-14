@@ -14,6 +14,8 @@ class MyUser(models.Model):
 class City(models.Model):
     city_id = models.IntegerField(primary_key=True)
     city_title = models.CharField(max_length=20)
+    city_name = models.CharField(max_length=40, default='')
+    city_is_rec = models.BooleanField(default=False)
 
     def __str__(self):
         return self.city_title
@@ -28,6 +30,8 @@ class Attraction(models.Model):
         City,
         related_name="attraction",
     )
+    attraction_is_rec = models.BooleanField(default=False)
 
     def __str__(self):
         return self.attraction_title
+

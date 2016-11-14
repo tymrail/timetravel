@@ -1,0 +1,35 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% block title %}Time Travel{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 well">
+                <h2>Time Travel</h2>
+                <h2>行者</h2>
+            </div>
+        </div>
+        <div class="row">
+            {% for city in city_reclist %}
+                <div class="col-md-3">
+                    <a href="/attractions/?city_id={{ city.city_id }}">
+                        <p>{{ city.city_title }}</p>
+                        <p>{{ city.city_name }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            {% for attraction in attraction_reclist %}
+                <div class="col-md-3">
+                    <a href="/attraction_info/?attraction_id={{ attraction.attraction_id }}">
+                        {{ attraction.attraction_title }}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

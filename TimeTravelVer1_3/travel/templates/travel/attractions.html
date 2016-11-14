@@ -1,0 +1,38 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% block title %}Time Travel{% endblock %}
+
+{% block content %}
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=FRDwoo1yqe5x8fz2g24SXuu446YRjDcD"></script>
+
+    <style type="text/css">
+		#allmap {position:fixed; width: 48em; height: 45em; overflow: hidden;margin:0; font-family:"微软雅黑"; z-index: 2}
+	</style>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="city_name">
+                <p>{{ city.city_name }}</p>
+                <p>{{ city.city_title }}</p>
+            </div>
+            {% for attraction in attraction_list %}
+                <div class="list">
+                    <a href="/attraction_info/?attraction_id={{ attraction.attraction_id }}">
+                        <p>{{ attraction.attraction_title }}</p>
+                    </a>
+                    <span>{{ attraction.attraction_price }}</span>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-6" style="position: fixed; right: 0">
+            <div id="allmap"></div>
+            <script type="text/javascript">
+                // 百度地图API功能
+                var map = new BMap.Map("allmap");  // 创建Map实例
+                map.centerAndZoom("{{ city.city_name }}",30);      // 初始化地图,用城市名设置地图中心点
+
+            </script>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,3 +1,6 @@
 from django.contrib import admin
+from authonline.models import City, Attraction
 
-# Register your models here.
+admin.site.register(City)
+admin.site.register(Attraction)
+

@@ -20,7 +20,9 @@
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/../TimeTravelVer1_3\templates" />
+        <option value="$MODULE_DIR$/templates" />
+        <option value="$MODULE_DIR$/authonline/templates" />
+        <option value="$MODULE_DIR$/travel/templates" />
       </list>
     </option>
   </component>
