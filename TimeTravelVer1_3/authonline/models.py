@@ -15,7 +15,11 @@ class City(models.Model):
     city_id = models.IntegerField(primary_key=True)
     city_title = models.CharField(max_length=20)
     city_name = models.CharField(max_length=40, default='')
+    city_province = models.CharField(max_length=60, default='')
     city_is_rec = models.BooleanField(default=False)
+    city_rec_month = models.IntegerField(default=0)
+    city_intro = models.CharField(max_length=200, default='')
+    city_img_src = models.CharField(max_length=100, default='')
 
     def __str__(self):
         return self.city_title
@@ -34,4 +38,3 @@ class Attraction(models.Model):
 
     def __str__(self):
         return self.attraction_title
-

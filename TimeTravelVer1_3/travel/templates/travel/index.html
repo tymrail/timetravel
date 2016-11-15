@@ -4,32 +4,86 @@
 
 {% block content %}
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 well">
-                <h2>Time Travel</h2>
-                <h2>行者</h2>
-            </div>
-        </div>
-        <div class="row">
-            {% for city in city_reclist %}
-                <div class="col-md-3">
-                    <a href="/attractions/?city_id={{ city.city_id }}">
-                        <p>{{ city.city_title }}</p>
-                        <p>{{ city.city_name }}</p>
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
-        <div class="row">
-            {% for attraction in attraction_reclist %}
-                <div class="col-md-3">
-                    <a href="/attraction_info/?attraction_id={{ attraction.attraction_id }}">
-                        {{ attraction.attraction_title }}
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
+    <section class="works" id="gallery">
+        {% if state == 'index' %}
+            <div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="sec-head">
+							<h2>Hotest <span>Cities</span></h2>
+							<hr/>
+						</div>
+					</div>
+					<div class="work-sec">
+						<div class="col-md-12 fil-btn">
+
+                            <div class="filter col-md-1 col-sm-1 col-xs-1 wrk-title active" data-filter=".1">Jan.</div>
+                            <div class="filter col-md-1 col-sm-1 col-xs-1 wrk-title" data-filter=".2">Feb.</div>
+                            <div class="filter col-md-1 col-sm-1 col-xs-1 wrk-title" data-filter=".3">Mar.</div>
+                            <div class="filter col-md-1 col-sm-1 col-xs-1 wrk-title" data-filter=".4">Apr.</div>
+                            <div class="filter col-md-1 col-sm-1 col-xs-1 wrk-title" data-filter=".5">May</div>
+                            <div class="filter col-md-1 col-sm-1 col-xs-1 wrk-title" data-filter=".6">Jun.</div>
+                            <div class="filter col-md-1 col-sm-1 col-xs-1 wrk-title" data-filter=".7">Jul.</div>
+                            <div class="filter col-md-1 col-sm-1 col-xs-1 wrk-title" data-filter=".8">Aug.</div>
+                            <div class="filter col-md-1 col-sm-1 col-xs-1 wrk-title" data-filter=".9">Sept.</div>
+                            <div class="filter col-md-1 col-sm-1 col-xs-1 wrk-title" data-filter=".10">Oct.</div>
+                            <div class="filter col-md-1 col-sm-1 col-xs-1 wrk-title" data-filter=".11">Nov.</div>
+                            <div class="filter col-md-1 col-sm-1 col-xs-1 wrk-title lst-cld" data-filter=".12">Dec.</div>
+
+
+
+						</div>
+							<div id="Container">
+								{% for city in display.city_reclist %}
+                                    <div class="filimg mix {{ city.city_rec_month }} col-md-3 col-sm-3 col-xs-12">
+                                        <a href="attractions/?city_id={{ city.city_id }}">
+                                            <img src="{% static 'images/' %}{{ city.city_img_src }}">
+                                            <div class="img-hover">
+                                                <h3>{{ city.city_name }}</h3>
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+							</div>
+					</div>
+				</div>
+			</div>
+        {% elif state == 'search_city' %}
+{#            <div id="Container">#}
+{#                {% for c in display.city_result.city %}#}
+{#                    <div class="filimg mix col-md-3 col-sm-3 col-xs-12">#}
+{#                        <img src="{% static 'images/' %}{{ c.city_img_src }}">#}
+{#                        <div class="img-hover">#}
+{#                            <h3>{{ c.city_name }}</h3>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                {% endfor %}#}
+{#            </div>#}
+            <div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="sec-head">
+							<h2>Search <span>Result</span></h2>
+							<hr/>
+						</div>
+					</div>
+					<div class="work-sec">
+                        <div id="Container">
+                            {% for c in display.city_result.city %}
+                                <div class="filimg mix col-md-3 col-sm-3 col-xs-12">
+                                    <img src="{% static 'images/' %}{{ c.city_img_src }}">
+                                    <div class="img-hover">
+                                        <h3>{{ c.city_name }}</h3>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+					</div>
+				</div>
+			</div>
+        {% elif state == 'search_attraction' %}
+        {% endif %}
+
+    </section>
 
 {% endblock %}
