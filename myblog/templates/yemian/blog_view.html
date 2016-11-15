@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<html>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>{{blog.title}}</title>
+    <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- 引入 Bootstrap -->
+		<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css"rel="stylesheet"type="text/css"/>
+	</head>
+    <body style="background-image:url({% static 'img/blogback.jpg' %});background-position:center; background-repeat:no-repeat;background-attachment: fixed;font-family: 方正清刻本悦宋简体;font-size: large">
+		<div class="container">
+            <div class="row clearfix">
+                <div class="col-md-1column"></div>
+                <div class="col-md-10 column">
+                    <div class="page-header">
+                        <h1>
+                            {{blog.title}} <small>{{blog.post_date | date:'Y-m-d H:i:s'}}</small>
+                        </h1>
+                    </div>
+                    <h4>
+                    <b>旅游景点：{{blog.author}}</b>
+                    </h4>
+                    <p>
+                        {{blog.content}}<br>
+                    </p>
+                    <a href="/blog_list?id={{blog.id}}">返回博客表单</a>
+                </div>
+                <div class="col-md-1 column"></div>
+            </div>
+        </div>
+    </body>
+</html>

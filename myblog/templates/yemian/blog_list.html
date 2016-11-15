@@ -1,0 +1,69 @@
+{% load staticfiles %}
+<html>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>{{blog.title}}</title>
+    <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- 引入 Bootstrap -->
+		<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/main.css"rel="stylesheet"type="text/css"/>
+	</head>
+
+    <body style="background-image:url({% static 'img/blogback.jpg' %});background-position:center; background-repeat:no-repeat;background-attachment: fixed;font-family: 方正清刻本悦宋简体;font-size: large">
+       <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-1 column">
+                </div>
+                <div class="col-md-10 column">
+                <br><br><a href="/blog_form">去写博客>></a><p/><br>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    编号
+                                </th>
+                                <th>
+                                    标题
+                                </th>
+                                <th>
+                                    旅游景点
+                                </th>
+                                <th>
+                                    发布时间
+                                </th>
+                                <th>
+                                    操作
+                                </th>
+                                {% for blog in blog_list %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    {{forloop.counter}}
+                                </td>
+                                <td>
+                                    <a href="/blog_view?id={{blog.id}}">{{blog.title}}</a>
+                                </td>
+                                <td>
+                                    {{blog.author}}
+                                </td>
+                                <td>
+                                    {{blog.post_date | date:"Y-m-d H:i:s"}}
+                                </td>
+                                <td>
+                                    <a href="/blog_edit?id={{blog.id}}&operate=update">修改</a>&nbsp;<a href="/blog_list?id={{ blog.id }}&operate=delete">删除</a></td>
+                                </td>
+                            </tr>
+                        </tbody>
+                        {% empty %}
+                        <tr><td colspan="4">还没有添加博客内容</td></tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="col-md-1 column">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
