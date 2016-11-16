@@ -44,7 +44,7 @@ def blog_view(request):
         blog = Blog.objects.get(id=bid_)
         return render(request, 'yemian/blog_view.html',{'blog':blog})
     else:
-        errors.append("参数异常请刷新后重试")
+        errors.append("参数错误")
         return render(request, 'yemian/blog_list.html',{'errors':errors})
 
 
