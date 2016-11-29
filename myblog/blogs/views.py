@@ -18,7 +18,9 @@ def blog_form(request):
             content=request.POST.get('content', ''),
         )
         new_blog.save()
+
         state = 'success'
+
     con = {
         'state': state,
     }
