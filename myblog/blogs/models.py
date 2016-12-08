@@ -10,8 +10,10 @@ class Blog(models.Model):
     content = models.CharField(u'正文', max_length=2000)
     post_date = models.DateTimeField(u'发布时间', auto_now_add=True)
 
+
     def __str__(self):
         return self.title
+
 
     class Meta:
         ordering = ['-post_date']
