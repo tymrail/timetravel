@@ -1,5 +1,7 @@
+import json
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 
 
 class MyUser(models.Model):
@@ -38,3 +40,51 @@ class Attraction(models.Model):
 
     def __str__(self):
         return self.attraction_title
+
+
+class Route(models.Model):
+    route_id = models.AutoField(primary_key=True)
+    route_name = models.CharField(max_length=64, default='')
+    route_detail = models.CharField(max_length=512)
+    route_creator = models.ForeignKey(
+        User,
+        related_name='route_creator',
+        default=None
+    )
+    route_owner = models.ManyToManyField(
+        User,
+        related_name='route',
+    )
+    route_popular = models.IntegerField(default=0)
+    route_create_time = models.DateField(auto_now_add=True)
+    route_modified_time = models.DateField(auto_now=True)
+    route_keywords = models.CharField(max_length=40, default='')
+
+    def __str__(self):
+        return self.route_name
+
+    def set_route_detail(self, x):
+        self.route_detail = json.dumps(x)
+
+    def get_route_detail(self):
+        return json.loads(self.route_detail)
+
+
+class Team(models.Model):
+    team_id = models.AutoField(primary_key=True)
+    team_name = models.CharField(max_length=32, default='')
+    team_creator = models.ForeignKey(
+        User,
+        related_name='team_creator',
+    )
+    team_member = models.ManyToManyField(
+        User,
+        related_name='team_member',
+    )
+    team_create_time = models.DateField(auto_now_add=True)
+    team_modified_time = models.DateField(auto_now=True)
+    team_closed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.team_name
+

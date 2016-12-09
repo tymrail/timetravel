@@ -7,7 +7,7 @@
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/TimeTravelVer1_3/settings.py</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\python workspace\TimeTravelVer1_3\db.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:sqlite:D:\GitProjects\timetravel\TimeTravelVer1_3\db.sqlite3</jdbc-url>
       <libraries>
         <library>
           <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/xerial-sqlite-license.txt</url>

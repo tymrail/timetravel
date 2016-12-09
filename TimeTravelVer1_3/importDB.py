@@ -30,8 +30,8 @@ def load_data():
                     city_id=city_new_id,
                     city_title=data['place_name'],
                 )
-
                 for a in data['place_attractions']:
+
                     if a['attraction_information']['attraction_price'] == '':
                         price = '0'
                     else:
@@ -54,4 +54,24 @@ def load_data():
                 print('done')
 
 if __name__ == "__main__":
-    load_data()
+    from authonline.models import City, Attraction
+    all_city = City.objects.all()
+    province_set = set()
+
+    for city in all_city:
+        province_set.add(city.city_province)
+
+    province_list = list(province_set)
+
+    # print(province_set)
+    Attraction.objects.filter()
+    with open('province_info.txt', 'a') as file:
+        for province in province_list:
+            file.write(province)
+            file.write('\n')
+
+
+# if __name__ == '__main__':
+#     from authonline.models import City
+#     non_province_city = City.objects.filter(city_province__contains="直辖市")
+#     print(non_province_city)
