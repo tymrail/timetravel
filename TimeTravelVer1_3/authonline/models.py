@@ -1,7 +1,6 @@
 import json
 from django.db import models
 from django.contrib.auth.models import User
-import datetime
 
 
 class MyUser(models.Model):
@@ -42,6 +41,11 @@ class Attraction(models.Model):
         return self.attraction_title
 
 
+class RouteRelation(models.Model):
+    route_relation_id = models.IntegerField(default=0)
+    route_relation_owner = models.ForeignKey(User, related_name='route_relation')
+
+
 class Route(models.Model):
     route_id = models.AutoField(primary_key=True)
     route_name = models.CharField(max_length=64, default='')
@@ -52,8 +56,8 @@ class Route(models.Model):
         default=None
     )
     route_owner = models.ManyToManyField(
-        User,
-        related_name='route',
+        RouteRelation,
+        related_name='route_owner',
     )
     route_popular = models.IntegerField(default=0)
     route_create_time = models.DateField(auto_now_add=True)
@@ -70,21 +74,4 @@ class Route(models.Model):
         return json.loads(self.route_detail)
 
 
-class Team(models.Model):
-    team_id = models.AutoField(primary_key=True)
-    team_name = models.CharField(max_length=32, default='')
-    team_creator = models.ForeignKey(
-        User,
-        related_name='team_creator',
-    )
-    team_member = models.ManyToManyField(
-        User,
-        related_name='team_member',
-    )
-    team_create_time = models.DateField(auto_now_add=True)
-    team_modified_time = models.DateField(auto_now=True)
-    team_closed = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.team_name
 

@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^cities/$', travelviews.cities, name='cities'),
     url(r'^attractions/$', travelviews.attractions, name='attractions'),
     url(r'^attraction_info/$', travelviews.attraction_info, name='attraction_info'),
+    url(r'^create_route/$', travelviews.create_route, name='create_route'),
 ]
