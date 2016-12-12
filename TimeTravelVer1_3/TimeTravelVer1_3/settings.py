@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     'authonline',
     'travel',
+    'blog',
 ]
 
 MIDDLEWARE = [

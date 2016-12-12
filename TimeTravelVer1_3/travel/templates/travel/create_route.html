@@ -107,11 +107,16 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <label for="route_keywords" class="col-md-3 control-label">路线关键字：</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="route_keywords" required name="route_keywords">
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="col-md-4 col-md-offset-4">
                         <div id="test_button" class="btn btn btn-primary btn-block">
-                            添加旅游景点
+                            添加
                         </div>
                     </div>
                 </div>
@@ -131,15 +136,14 @@
     <script>
     $("#test_button").click(function(){
         var route_name = $("input[name='route_name']").val();
+        var route_keywords = $("input[name='route_keywords']").val();
         var route_detail_list = [];
         $("span[data-count='district']").each(function () {
             route_detail_list.push(parseInt($(this).attr("data-code")));
 {#            console.log($(this).attr("data-code"));#}
         });
-        console.log(route_name);
-        console.log(route_detail_list);
         var route_detail_string = route_detail_list.join(',');
-        $.post("", { 'route_name': route_name, 'route_detail_string': route_detail_string } );
+        $.post("", { 'route_name': route_name, 'route_detail_string': route_detail_string, 'route_keywords': route_keywords } );
 {#        window.location.href="/personal/";#}
     });
 
