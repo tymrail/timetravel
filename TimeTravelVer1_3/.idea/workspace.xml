@@ -2,24 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ec8bfd7-6d0e-4ff4-8cbe-9be0347100da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/travel/templates/travel/create_team.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/travel/templates/travel/route_detail.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/travel/templates/travel/show_routes.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/travel/templates/travel/show_teams.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/travel/templates/travel/team_detail.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../tryRequests/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../tryRequests/get_attraction_img.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/templates/travel/attractions.html" afterPath="$PROJECT_DIR$/travel/templates/travel/attractions.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/templates/travel/create_route.html" afterPath="$PROJECT_DIR$/travel/templates/travel/create_route.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/templates/travel/personal.html" afterPath="$PROJECT_DIR$/travel/templates/travel/personal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/urls.py" afterPath="$PROJECT_DIR$/travel/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/templates/travel/attraction_info.html" afterPath="$PROJECT_DIR$/travel/templates/travel/attraction_info.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/templates/travel/route_detail.html" afterPath="$PROJECT_DIR$/travel/templates/travel/route_detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/views.py" afterPath="$PROJECT_DIR$/travel/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../tryRequests/.idea/misc.xml" afterPath="$PROJECT_DIR$/../tryRequests/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../tryRequests/.idea/tryRequests.iml" afterPath="$PROJECT_DIR$/../tryRequests/.idea/tryRequests.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../tryRequests/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../tryRequests/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../tryRequests/get_img.py" afterPath="$PROJECT_DIR$/../tryRequests/get_img.py" />
     </list>
     <ignored path="TimeTravelVer1_3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,23 +32,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/travel/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="415" column="46" lean-forward="true" selection-start-line="415" selection-start-column="46" selection-end-line="415" selection-end-column="46" />
+            <state relative-caret-position="265">
+              <caret line="125" column="37" lean-forward="false" selection-start-line="125" selection-start-column="37" selection-end-line="125" selection-end-column="37" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
                 <element signature="e#412#1828#0" expanded="false" />
                 <element signature="e#1856#2345#0" expanded="false" />
                 <element signature="e#2378#3311#0" expanded="false" />
-                <element signature="e#3348#4087#0" expanded="false" />
-                <element signature="e#4120#5221#0" expanded="false" />
-                <element signature="e#5257#5629#0" expanded="false" />
-                <element signature="e#5732#6805#0" expanded="false" />
-                <element signature="e#7801#8789#0" expanded="false" />
-                <element signature="e#9555#9961#0" expanded="false" />
-                <element signature="e#10010#10903#0" expanded="false" />
+                <element signature="e#4420#5521#0" expanded="false" />
+                <element signature="e#5557#5929#0" expanded="false" />
+                <element signature="e#6032#7105#0" expanded="false" />
+                <element signature="e#8337#9325#0" expanded="false" />
+                <element signature="e#10091#10497#0" expanded="false" />
+                <element signature="e#10546#11439#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -71,8 +56,8 @@
       <file leaf-file-name="team_detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/travel/templates/travel/team_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1254">
-              <caret line="57" column="38" lean-forward="true" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
+            <state relative-caret-position="385">
+              <caret line="62" column="30" lean-forward="true" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
               <folding>
                 <element signature="e#1172#1196#0#HTML" expanded="true" />
                 <element signature="e#1540#1562#0#HTML" expanded="true" />
@@ -88,7 +73,7 @@
       <file leaf-file-name="create_team.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/travel/templates/travel/create_team.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
+            <state relative-caret-position="748">
               <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
               <folding>
                 <element signature="e#1728#1734#0#HTML" expanded="true" />
@@ -102,7 +87,7 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/authonline/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
+            <state relative-caret-position="1518">
               <caret line="86" column="21" lean-forward="false" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
               <folding />
             </state>
@@ -132,19 +117,32 @@
       <file leaf-file-name="show_teams.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/travel/templates/travel/show_teams.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="362" column="56" lean-forward="true" selection-start-line="362" selection-start-column="56" selection-end-line="362" selection-end-column="56" />
+            <state relative-caret-position="818">
+              <caret line="381" column="42" lean-forward="true" selection-start-line="381" selection-start-column="42" selection-end-line="381" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="personal.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/travel/templates/travel/personal.html">
+      <file leaf-file-name="attractions.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/travel/templates/travel/attractions.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5610">
-              <caret line="267" column="52" lean-forward="true" selection-start-line="267" selection-start-column="52" selection-end-line="267" selection-end-column="52" />
+            <state relative-caret-position="444">
+              <caret line="59" column="38" lean-forward="true" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="attraction_info.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/travel/templates/travel/attraction_info.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="52" column="48" lean-forward="true" selection-start-line="52" selection-start-column="48" selection-end-line="52" selection-end-column="48" />
+              <folding>
+                <element signature="e#1718#1742#0#HTML" expanded="true" />
+                <element signature="e#2611#2627#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -152,8 +150,8 @@
       <file leaf-file-name="route_detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/travel/templates/travel/route_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="704">
-              <caret line="38" column="23" lean-forward="true" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+            <state relative-caret-position="121">
+              <caret line="64" column="22" lean-forward="true" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -193,7 +191,6 @@
         <option value="$PROJECT_DIR$/importDB2.py" />
         <option value="$PROJECT_DIR$/authonline/static/css/style.css" />
         <option value="$PROJECT_DIR$/travel/templates/travel/index.html" />
-        <option value="$PROJECT_DIR$/travel/templates/travel/attraction_info.html" />
         <option value="$PROJECT_DIR$/check_province.py" />
         <option value="$PROJECT_DIR$/authonline/urls.py" />
         <option value="$PROJECT_DIR$/authonline/views.py" />
@@ -216,12 +213,13 @@
         <option value="$PROJECT_DIR$/travel/templates/travel/personal.html" />
         <option value="$PROJECT_DIR$/travel/templates/travel/attractions.html" />
         <option value="$PROJECT_DIR$/travel/templates/travel/show_routes.html" />
-        <option value="$PROJECT_DIR$/travel/templates/travel/route_detail.html" />
         <option value="$PROJECT_DIR$/travel/templates/travel/create_team.html" />
         <option value="$PROJECT_DIR$/travel/templates/travel/team_detail.html" />
         <option value="$PROJECT_DIR$/travel/urls.py" />
         <option value="$PROJECT_DIR$/travel/templates/travel/show_teams.html" />
+        <option value="$PROJECT_DIR$/travel/templates/travel/route_detail.html" />
         <option value="$PROJECT_DIR$/travel/views.py" />
+        <option value="$PROJECT_DIR$/travel/templates/travel/attraction_info.html" />
       </list>
     </option>
   </component>
@@ -647,9 +645,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1684435" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1684435" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.5021322" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -705,7 +703,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="165" />
+      <option name="time" value="175" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -969,22 +967,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/travel/templates/travel/attraction_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1584">
-          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/travel/templates/travel/attractions.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="55" column="54" lean-forward="true" selection-start-line="55" selection-start-column="54" selection-end-line="55" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/travel/templates/travel/cities.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -998,26 +980,6 @@
         <state relative-caret-position="5610">
           <caret line="267" column="52" lean-forward="true" selection-start-line="267" selection-start-column="52" selection-end-line="267" selection-end-column="52" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/travel/templates/travel/route_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="38" column="23" lean-forward="true" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/travel/templates/travel/create_team.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-          <folding>
-            <element signature="e#1728#1734#0#HTML" expanded="true" />
-            <element signature="e#1734#1740#0#HTML" expanded="true" />
-            <element signature="e#1740#1746#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1039,10 +1001,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/travel/templates/travel/show_routes.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1390">
+          <caret line="481" column="26" lean-forward="true" selection-start-line="481" selection-start-column="26" selection-end-line="481" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/travel/templates/travel/show_teams.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="818">
+          <caret line="381" column="42" lean-forward="true" selection-start-line="381" selection-start-column="42" selection-end-line="381" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/travel/templates/travel/team_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1254">
-          <caret line="57" column="38" lean-forward="true" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
+        <state relative-caret-position="385">
+          <caret line="62" column="30" lean-forward="true" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
           <folding>
             <element signature="e#1172#1196#0#HTML" expanded="true" />
             <element signature="e#1540#1562#0#HTML" expanded="true" />
@@ -1054,46 +1032,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/travel/templates/travel/create_team.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+          <folding>
+            <element signature="e#1728#1734#0#HTML" expanded="true" />
+            <element signature="e#1734#1740#0#HTML" expanded="true" />
+            <element signature="e#1740#1746#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/authonline/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
+        <state relative-caret-position="1518">
           <caret line="86" column="21" lean-forward="false" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/travel/templates/travel/show_routes.html">
+    <entry file="file://$PROJECT_DIR$/travel/templates/travel/route_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1390">
-          <caret line="481" column="26" lean-forward="true" selection-start-line="481" selection-start-column="26" selection-end-line="481" selection-end-column="26" />
+        <state relative-caret-position="121">
+          <caret line="64" column="22" lean-forward="true" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/travel/templates/travel/show_teams.html">
+    <entry file="file://$PROJECT_DIR$/travel/templates/travel/attractions.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="362" column="56" lean-forward="true" selection-start-line="362" selection-start-column="56" selection-end-line="362" selection-end-column="56" />
+        <state relative-caret-position="444">
+          <caret line="59" column="38" lean-forward="true" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/travel/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="415" column="46" lean-forward="true" selection-start-line="415" selection-start-column="46" selection-end-line="415" selection-end-column="46" />
+        <state relative-caret-position="265">
+          <caret line="125" column="37" lean-forward="false" selection-start-line="125" selection-start-column="37" selection-end-line="125" selection-end-column="37" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
             <element signature="e#412#1828#0" expanded="false" />
             <element signature="e#1856#2345#0" expanded="false" />
             <element signature="e#2378#3311#0" expanded="false" />
-            <element signature="e#3348#4087#0" expanded="false" />
-            <element signature="e#4120#5221#0" expanded="false" />
-            <element signature="e#5257#5629#0" expanded="false" />
-            <element signature="e#5732#6805#0" expanded="false" />
-            <element signature="e#7801#8789#0" expanded="false" />
-            <element signature="e#9555#9961#0" expanded="false" />
-            <element signature="e#10010#10903#0" expanded="false" />
+            <element signature="e#4420#5521#0" expanded="false" />
+            <element signature="e#5557#5929#0" expanded="false" />
+            <element signature="e#6032#7105#0" expanded="false" />
+            <element signature="e#8337#9325#0" expanded="false" />
+            <element signature="e#10091#10497#0" expanded="false" />
+            <element signature="e#10546#11439#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/travel/templates/travel/attraction_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="52" column="48" lean-forward="true" selection-start-line="52" selection-start-column="48" selection-end-line="52" selection-end-column="48" />
+          <folding>
+            <element signature="e#1718#1742#0#HTML" expanded="true" />
+            <element signature="e#2611#2627#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

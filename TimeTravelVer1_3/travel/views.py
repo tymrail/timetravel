@@ -112,6 +112,12 @@ def attraction_info(request):
             'x': float(mapxy_list[0]),
             'y': float(mapxy_list[1]),
         }
+        relate_route = list()
+        routes_all = Route.objects.all()
+        for route in routes_all:
+            route_lists = route.get_route_detail()
+            if int(attraction_id) in route.get_route_detail():
+                relate_route.append(route)
     else:
         return HttpResponseRedirect(reverse('homepage'))
     content = {
@@ -120,6 +126,7 @@ def attraction_info(request):
         'attraction_info': attraction_detail,
         'mapxy': mapxy,
         'state': 'attraction_info',
+        'relate_routes': relate_route,
     }
 
     return render(request, 'travel/attraction_info.html', content)
@@ -218,6 +225,7 @@ def route_detail(request):
             route_attractions.append(Attraction.objects.filter(attraction_id__exact=i)[0])
         updateble = (route_exact.route_creator == user)
         is_owner = (user in User.objects.filter(route_relation__route_relation_id__exact=route_exact.route_id))
+
         content = {
             'user': user,
             'route': route_exact,
@@ -225,6 +233,11 @@ def route_detail(request):
             'updateble': updateble,
             'is_owner': is_owner,
         }
+
+        if is_owner is True:
+            rec_teams = Team.objects.filter(team_route__exact=route_exact)\
+                .exclude(team_member__team_relation_member__username=user.username)
+            content['rec_teams'] = rec_teams
         return render(request, 'travel/route_detail.html', content)
     else:
         return HttpResponseRedirect(reverse('personal'))
