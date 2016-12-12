@@ -3,8 +3,10 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from django.contrib.auth.models import User
-from authonline.models import MyUser, City, Attraction, Route
+from django.views.decorators.csrf import csrf_exempt
 
+from authonline.models import MyUser, City, Attraction, Team, TeamRelation
+# Route, RouteRelation,
 from django.contrib.auth.decorators import user_passes_test, login_required
 
 
@@ -166,46 +168,198 @@ def get_routes(routes_list):
     return all_route
 
 
+# @login_required
+# def create_or_update_route(request):
+#     user = request.user if request.user.is_authenticated() else None
+#     if user is None:
+#         return HttpResponseRedirect(reverse('homepage'))
+#
+#     if request.method == 'POST':
+#         if request.POST('route_id'):
+#             update_route = Route.objects.filter(route_id__exact=request.POST.get('route_id'))
+#             update_route.update(
+#                 route_name=request.POST.get('route_name'),
+#             )
+#             update_route.set_route_detail(request.POST.getlist('route_detail_list'))
+#         else:
+#             user_add_to = User.objects.get(username__exact=user.username)
+#             new_route = Route(
+#                 route_name=request.POST.get('route_name', ''),
+#                 route_creator=user_add_to,
+#             )
+#             route_detail_list = request.POST.getlist('route_detail_list', [])
+#             new_route.set_route_detail(route_detail_list)
+#             new_route.save()
+#             new_route.route_owner.add(user_add_to)
+#
+#     elif request.method == 'GET':
+#         if request.GET.get('option') == 'create':
+#
+#             route_exact = Route.objects.filter(route_id__exact=request.GET.get('route_id'))
+#             route = get_routes(route_exact)[0]
+
+# TODO 针对拥有相同旅游路线的/旅游路线拥有相同关键字的人进行队友推荐
+
+
+@csrf_exempt
 @login_required
-def create_or_update_route(request):
+def create_route(request):
     user = request.user if request.user.is_authenticated() else None
     if user is None:
-        return HttpResponseRedirect(reverse('homepage'))
+        return HttpResponseRedirect(reverse('login'))
+
+    state = 'unknown'
 
     if request.method == 'POST':
-        if request.POST('route_id'):
-            update_route = Route.objects.filter(route_id__exact=request.POST.get('route_id'))
-            update_route.update(
-                route_name=request.POST.get('route_name'),
-            )
-            update_route.set_route_detail(request.POST.getlist('route_detail_list'))
-        else:
-            user_add_to = User.objects.get(username__exact=user.username)
-            new_route = Route(
-                route_name=request.POST.get('route_name', ''),
-                route_creator=user_add_to,
-            )
-            route_detail_list = request.POST.getlist('route_detail_list', [])
-            new_route.set_route_detail(route_detail_list)
-            new_route.save()
-            new_route.route_owner.add(user_add_to)
+        new_route = Route(
+            route_name=request.POST.get('route_name', ''),
+            route_creator=user,
+        )
+        route_detail_string = request.POST.get('route_detail_string', '')
+        route_detail_list = route_detail_string.split(',')
+        new_route.set_route_detail(str_list_to_int(route_detail_list))
+        new_route.save()
 
-    elif request.method == 'GET':
-        if request.GET.get('option') == 'create':
+        # add relation row
+        new_route_relation = RouteRelation(
+            route_relation_id=new_route.route_id,
+            route_relation_owner=user,
+        )
+        new_route_relation.save()
+        new_route.route_owner.add(new_route_relation)
+        state = 'success'
+        return HttpResponseRedirect(reverse('homepage'))
+    content = {
+        'state': state,
+    }
 
-            route_exact = Route.objects.filter(route_id__exact=request.GET.get('route_id'))
-            route = get_routes(route_exact)[0]
+    return render(request, 'travel/create_route.html', content)
 
-# TODO 修改对旅游路线的增删查改功能，配套前端
-# TODO 组队功能
-# TODO 针对拥有相同旅游路线的/旅游路线拥有相同关键字的人进行队友推荐
+
+@login_required
+def operate_route(request):
+    user = request.user if request.user.is_authenticated() else None
+    if request.method == 'GET' and request.GET.get('operate') == 'update':
+        updating_route = Route.objects.filter(route_id__exact=request.GET.get('route_id'))
+        if request.GET('route_name'):
+            updating_route.update(route_name=request.GET.get('route_name'))
+        if request.GET('route_detail'):
+            updating_route.set_route_detail(request.GET.get('route_detail'))
+
+    elif request.method == 'GET' and request.GET.get('operate') == 'delete':
+        Route.objects.filter(route_id__exact=request.GET.get('route_id')).delete()
+    else:
+        route_operate = Route.objects.filter(route_id__exact=request.GET.get('route_id'))
+        content = {
+            'route_operate': route_operate,
+            'state': 'show',
+            'active_menu': 'operate_route',
+        }
+        return render(request, 'travel/operate.html', content)
+    return HttpResponseRedirect(reverse('show_routes'))
+
+
+@login_required
+def join_route(request):
+    user = request.user if request.user.is_authenticated() else None
+    if request.method == 'GET' and request.GET('route_id'):
+        route_join = Route.objects.filter(route_id__exact=request.GET.get('route_id'))
+        new_route_relation = RouteRelation(
+            route_relation_id=route_join.route_id,
+            route_relation_owner=user,
+        )
+        new_route_relation.save()
+        route_join.route_owner.add(new_route_relation)
+        route_join.update(route_popular=route_join.route_popular+1)
+    return HttpResponseRedirect(reverse('personal'))
 
 
 @login_required
 def quit_route(request):
+    user = request.user if request.user.is_authenticated() else None
     if request.method == 'GET' and request.GET('route_id'):
-        route = Route.objects.filter(route_id__exact=request.GET.get('route_id'))
+        RouteRelation.objects\
+            .filter(route_relation_id=request.GET.get('route_id'))\
+            .filter(route_relation_owner=user.username).delete()
+    return HttpResponseRedirect(reverse('personal'))
 
+
+@login_required
+def create_team(request):
+    user = request.user if request.user.is_authenticated() else None
+    if user is None:
+        return HttpResponseRedirect(reverse('login'))
+
+    state = 'unknown'
+
+    if request.method == 'POST':
+        new_team = Team(
+            team_name=request.POST.get('team_name', ''),
+            team_creator=user,
+        )
+
+        new_team.save()
+
+        # add relation row
+        new_team_relation = TeamRelation(
+            team_relation_id=new_team.team_id,
+            team_relation_member=user,
+        )
+        new_team_relation.save()
+        new_team.route_owner.add(new_team_relation)
+        state = 'success'
+
+    content = {
+        'state': state,
+    }
+
+    return render(request, 'travel/create_team.html', content)
+
+
+@login_required
+def operate_team(request):
+    user = request.user if request.user.is_authenticated() else None
+    if request.method == 'GET' and request.GET.get('operate') == 'update':
+        updating_team = Route.objects.filter(team_id__exact=request.GET.get('team_id'))
+        if request.GET('team_name'):
+            updating_team.update(team_name=request.GET.get('team_name'))
+
+    elif request.method == 'GET' and request.GET.get('operate') == 'close':
+        Team.objects.filter(team_id__exact=request.GET.get('team_id')).update(team_is_closed=True)
+
+    else:
+        team_operate = Team.objects.filter(team_id__exact=request.GET.get('team_id'))
+        content = {
+            'route_operate': team_operate,
+            'state': 'show',
+            'active_menu': 'operate_route',
+        }
+        return render(request, 'travel/operate_team.html', content)
+    return HttpResponseRedirect(reverse('show_team'))
+
+
+@login_required
+def join_team(request):
+    user = request.user if request.user.is_authenticated() else None
+    if request.method == 'GET' and request.GET('team_id'):
+        team_join = Team.objects.filter(team_id__exact=request.GET.get('team_id'))
+        new_team_relation = TeamRelation(
+            team_relation_id=team_join.team_id,
+            team_relation_member=user,
+        )
+        new_team_relation.save()
+        team_join.team_member.add(new_team_relation)
+        team_join.update(team_popular=team_join.team_popular+1)
+    return HttpResponseRedirect(reverse('personal'))
+
+
+@login_required
+def quit_team(request):
+    user = request.user if request.user.is_authenticated() else None
+    if request.method == 'GET' and request.GET('team_id'):
+        TeamRelation.objects\
+            .filter(team_relation_id=request.GET.get('team_id'))\
+            .filter(team_relation_member=user.username).delete()
     return HttpResponseRedirect(reverse('personal'))
 
 
@@ -214,11 +368,21 @@ def personal(request):
     user = request.user if request.user.is_authenticated() else None
     if user is None:
         return HttpResponseRedirect(reverse('login'))
+    # TODO personal page
+
+    user_create_routes = Route.objects.filter(route_creator__username__exact=user.username)
+
+
 
     content = {
         'user': user,
         'active_menu': 'personal',
     }
 
-    return render(request, 'authonline/personal.html', content)
+    return render(request, 'travel/personal.html', content)
 
+
+def str_list_to_int(values):
+    for i in range(len(values)):
+        values[i] = int(values[i])
+    return values

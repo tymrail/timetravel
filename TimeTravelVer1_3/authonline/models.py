@@ -1,7 +1,6 @@
 import json
 from django.db import models
 from django.contrib.auth.models import User
-import datetime
 
 
 class MyUser(models.Model):
@@ -42,6 +41,14 @@ class Attraction(models.Model):
         return self.attraction_title
 
 
+class RouteRelation(models.Model):
+    route_relation_id = models.IntegerField(default=0)
+    route_relation_owner = models.ForeignKey(User, related_name='route_relation')
+
+    def __str__(self):
+        return str(self.route_relation_id)
+
+
 class Route(models.Model):
     route_id = models.AutoField(primary_key=True)
     route_name = models.CharField(max_length=64, default='')
@@ -49,11 +56,10 @@ class Route(models.Model):
     route_creator = models.ForeignKey(
         User,
         related_name='route_creator',
-        default=None
     )
     route_owner = models.ManyToManyField(
-        User,
-        related_name='route',
+        RouteRelation,
+        related_name='route_owner',
     )
     route_popular = models.IntegerField(default=0)
     route_create_time = models.DateField(auto_now_add=True)
@@ -70,6 +76,14 @@ class Route(models.Model):
         return json.loads(self.route_detail)
 
 
+class TeamRelation(models.Model):
+    team_relation_id = models.IntegerField(default=0)
+    team_relation_member = models.ForeignKey(User, related_name='team_relation')
+
+    def __str__(self):
+        return str(self.team_relation_id)
+
+
 class Team(models.Model):
     team_id = models.AutoField(primary_key=True)
     team_name = models.CharField(max_length=32, default='')
@@ -78,12 +92,16 @@ class Team(models.Model):
         related_name='team_creator',
     )
     team_member = models.ManyToManyField(
-        User,
+        TeamRelation,
         related_name='team_member',
     )
     team_create_time = models.DateField(auto_now_add=True)
     team_modified_time = models.DateField(auto_now=True)
     team_closed = models.BooleanField(default=False)
+    team_route = models.ForeignKey(
+        Route,
+        related_name='team_route',
+    )
 
     def __str__(self):
         return self.team_name

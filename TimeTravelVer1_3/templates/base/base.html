@@ -42,8 +42,8 @@
 									     	<li class="active"><a href="{% url 'homepage' %}">Home</a></li>
 									        <li><a href="#listed">Listing</a></li>
 									        <li><a href="#agents">Agents</a></li>
-									        <li><a href="#gallery">Gallery</a></li>
                                             {% if user %}
+                                                <li><a href="{% url 'create_route' %}">Create Route</a></li>
 									     		<li><a href="{% url 'logout' %}">Sign out</a></li>
                         						<li><a href="{% url 'set_password' %}">Reset PassWord</a></li>
 									     	{% else %}
