@@ -1,0 +1,92 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% block title %}Time Travel{% endblock %}
+
+{% block content %}
+    <style>
+        .user_name{
+            width: 100%;
+            height: 50px;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            color: rgba(0, 153, 255, 0.7);
+            border: 2px solid rgba(0, 153, 255, 0.7);
+            transition: all 0.8s ease-in 0s;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        .route-operate{
+            width: 100%;
+            height: 50px;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            color: rgba(0, 153, 255, 0.7);
+            border: 2px solid rgba(0, 153, 255, 0.7);
+            transition: all 0.8s ease-in 0s;
+            line-height: 50px;
+            text-align: center;
+        }
+    </style>
+    <section class="works" id="gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="sec-head">
+                        <h2><span>{{ team.team_name }}</span></h2>
+                        <p style="margin-top: 1em;">创建者：{{ team_creator.username }}</p>
+                        <hr/>
+                    </div>
+                </div>
+                <div class="work-sec">
+                    <div class="col-md-12">
+                        {% for member in team_members %}
+                            <div class="col-md-3">
+                                <h2 style="font-size: 1em"><span>队伍成员：</span></h2>
+                                <div class="user_name">
+                                    <a href="#" style="color: rgba(0, 153, 255, 0.7); font-weight: 800;">{{ member.username }}</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            {% if is_owner is False %}
+                            <div class="route-operate">
+                                <a href="/join_team/?team_id={{ team.team_id }}">Join</a>
+                            </div>
+                            {% else %}
+                             <div class="route-operate">
+                                <a href="/quit_team/?team_id={{ team.team_id }}">Quit</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 3em; padding-left: 1em;">
+                <div class="col-md-12">
+                    <div class="sec-head">
+                        <h2 style="font-size:1.5em">队伍选择路线:&nbsp;<span>{{ team_route.route_name }}</span></h2>
+                        <hr/>
+                    </div>
+                </div>
+                <div class="work-sec">
+                    <div class="col-md-12">
+                        {% for attraction in team_route_attractions %}
+                            <div class="filimg mix col-md-3 col-sm-3 col-xs-12">
+                                <a href="/attraction_info/?attraction_id={{ attraction.attraction_id }}">
+                                    <img src="{% static 'images/attractions/' %}{{ attraction.attraction_title }}.jpg">
+                                    <div class="img-hover">
+                                        <h3>第{{ forloop.counter }}站:{{ attraction.attraction_title }}</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% block title %}Time Travel{% endblock %}
+
+{% block content %}
+
+    <section class="works" id="gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="sec-head">
+                        <h2><span>{{ route.route_name }}</span></h2>
+                        <p>关键字：{{ route.route_keywords }}</p>
+                        <hr/>
+                    </div>
+                </div>
+                <div class="work-sec">
+                    <div class="col-md-12">
+                        {% for attraction in route_attractions %}
+                            <div class="filimg mix col-md-3 col-sm-3 col-xs-12">
+                                <a href="/attraction_info/?attraction_id={{ attraction.attraction_id }}">
+                                    <img src="{% static 'images/attractions/' %}{{ attraction.attraction_title }}.jpg">
+                                    <div class="img-hover">
+                                        <h3>第{{ forloop.counter }}站:{{ attraction.attraction_title }}</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% if is_owner is False %}
+            <div class="form-btn">
+                <a href="/join_route/?route_id={{ route.route_id }}">Join</a>
+            </div>
+            {% else %}
+             <div class="form-btn">
+                <a href="/quit_route/?route_id={{ route.route_id }}">Quit</a>
+            </div>
+            {% endif %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
