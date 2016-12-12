@@ -5,8 +5,8 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 
-from authonline.models import MyUser, City, Attraction, Route, RouteRelation
-
+from authonline.models import MyUser, City, Attraction, Team, TeamRelation
+# Route, RouteRelation,
 from django.contrib.auth.decorators import user_passes_test, login_required
 
 
@@ -369,6 +369,11 @@ def personal(request):
     if user is None:
         return HttpResponseRedirect(reverse('login'))
     # TODO personal page
+
+    user_create_routes = Route.objects.filter(route_creator__username__exact=user.username)
+
+
+
     content = {
         'user': user,
         'active_menu': 'personal',
