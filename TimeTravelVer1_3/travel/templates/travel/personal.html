@@ -272,35 +272,27 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 												<tr>
 													<th>Name</th>
 													<th>Description</th>
-													<th>Price</th>
+													<th>Keywords</th>
+                                                    <th>Create Date</th>
 												</tr>
 											</thead>
 											<tbody>
+                                                {% for route in route_create_list %}
 												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
+													<td>
+                                                        <a href="/route_detail/?route_id={{ route.route_self.route_id }}">
+                                                            {{ route.route_self.route_name }}
+                                                        </a>
+                                                    </td>
+													<td>
+                                                        {% for attraction in route.route_attractions %}
+                                                            <a href="/attraction_info/?attraction_id={{ attraction.attraction_id }}">{{ attraction.attraction_title }}</a>,
+                                                        {% endfor %}
+                                                    </td>
+													<td>{{ route.route_self.route_keywords }}</td>
+                                                    <td>{{ route.route_self.route_create_time }}</td>
 												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
+                                                {% endfor %}
 											</tbody>
 											<tfoot>
 												<tr>

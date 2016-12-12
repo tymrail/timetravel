@@ -50,7 +50,7 @@
                                     {% for attraction in attraction_list %}
                                         <div class="filimg mix col-md-6 col-sm-6 col-xs-12">
                                             <a href="/attraction_info/?attraction_id={{ attraction.attraction_id }}">
-                                                <img src="{% static 'images/' %}{{ attraction.attraction_img_src }}">
+                                                <img src="{% static 'images/attractions/' %}{{ attraction.attraction_title }}.jpg">
                                                 <div class="img-hover">
                                                     <h3>{{ attraction.attraction_title }}</h3>
                                                 </div>

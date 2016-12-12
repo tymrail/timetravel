@@ -30,26 +30,26 @@
             <div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="sec-head">
-							<h2>{{ attraction_info.attraction_title }}</h2>
-							<hr/>
-                            <p><span>景点简介：</span>{{ attraction_info.attraction_intro }}</p>
-                            <p><span>门票价格：</span>￥{{ attraction_info.attraction_price }}</p>
-						</div>
+						<div class="col-md-12">
+                            <div class="sec-head">
+                                <h2>{{ attraction_info.attraction_title }}</h2>
+                                <hr/>
+                                <p><span>景点简介：</span>{{ attraction_info.attraction_intro }}</p>
+                                <p><span>门票价格：</span>￥{{ attraction_info.attraction_price }}</p>
+                            </div>
+                        </div>
 					</div>
 					<div class="row" style="margin-top: 11em">
                         <div class="col-md-6">
                             <div class="work-sec">
                                 <div id="Container">
-                                    {% for attraction in attraction_list %}
-                                        <div class="filimg mix col-md-6 col-sm-6 col-xs-12">
-                                            <a href="/attraction_info/?attraction_id={{ attraction.attraction_id }}">
-                                                <img src="{% static 'images/' %}{{ attraction.attraction_img_src }}">
-                                                <div class="img-hover">
-                                                    <h3>{{ attraction.attraction_title }}</h3>
-                                                </div>
-                                            </a>
-                                        </div>
+                                    <div class="col-md-12">
+                                        <img src="{% static 'images/attractions/' %}{{ attraction_info.attraction_title }}.jpg">
+                                    </div>
+                                    {% for route in relate_routes %}
+                                        <a href="/route_detail/?route_id={{ route.route_id }}">
+                                            <p>{{ route.route_name }}</p>
+                                        </a>
                                     {% endfor %}
                                 </div>
                             </div>

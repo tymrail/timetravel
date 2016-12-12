@@ -1,0 +1,68 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% block title %}Time Travel{% endblock %}
+
+{% block content %}
+    <style>
+    .form-btn button{
+        width: 100%;
+        height: 50px;
+        margin-top: 20px;
+        border: none;
+        background-color: rgba(24, 25, 30, 0.7);
+        color: #fff;
+        transition: all 0.8s ease-in 0s;
+    }
+    </style>
+    <section class="works" id="gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="sec-head">
+                        <h2>创建<span>队伍</span></h2>
+                        <hr/>
+                    </div>
+                </div>
+                <form method="post" role="form">
+                    {% csrf_token %}
+                    <div class="col-md-12">
+                        <div class="work-sec">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="team_name" class="form-control selltwo" placeholder="Team Name..." required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="work-sec">
+                            <div class="col-md-6">
+                                <select class="form-control sellone" title="search_select" name="team_route">
+                                    {% for route in my_routes %}
+                                        <option value="{{ route.route_info.route_id }}">
+                                            {{ route.route_info.route_name }}&nbsp;&nbsp;&nbsp;
+                                            {% for attraction in route.route_sights %}
+                                                {{ attraction.attraction_title }},
+                                            {% endfor %}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="work-sec">
+                            <div class="col-md-3">
+                                <div class="form-btn">
+                                    <button type="submit">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
