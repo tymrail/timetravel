@@ -6,17 +6,152 @@
     <link href="{% static 'css/route_style.css'%}" rel="stylesheet">
     <link href="{% static 'css/city-picker.css'%}" rel="stylesheet">
     <link href="{% static 'css/main.css'%}" rel="stylesheet">
-    <div class="container">
-        <div class="row">
-            <form method="post" role="form">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="route_name" class="col-md-3 control-label">路线名称：</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" id="route_name" required name="route_name" autofocus>
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <form method="post" role="form">#}
+{#                {% csrf_token %}#}
+{#                <div class="form-group">#}
+{#                    <label for="route_name" class="col-md-3 control-label">路线名称：</label>#}
+{#                    <div class="col-md-9">#}
+{#                        <input type="text" class="form-control" id="route_name" required name="route_name" autofocus>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="container route-container">#}
+{#                    <h5>景点一:</h5>#}
+{##}
+{#                    <div class="form-inline">#}
+{#                        <div style="position: relative;">#}
+{#                            <input class="form-control" readonly type="text" data-toggle="city-picker"#}
+{#                                   placeholder="点击从下拉面板中选择省/市/景点" style="width:60%;">#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <h5>景点二:</h5>#}
+{##}
+{#                    <div class="form-inline">#}
+{#                        <div style="position: relative;">#}
+{#                            <input class="form-control" readonly type="text" data-toggle="city-picker"#}
+{#                                   placeholder="点击从下拉面板中选择省/市/景点" style="width:60%;">#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <h5>景点三:</h5>#}
+{##}
+{#                    <div class="form-inline">#}
+{#                        <div style="position: relative;">#}
+{#                            <input class="form-control" readonly type="text" data-toggle="city-picker"#}
+{#                                   placeholder="点击从下拉面板中选择省/市/景点" style="width:60%;">#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <h5>景点四:</h5>#}
+{##}
+{#                    <div class="form-inline">#}
+{#                        <div style="position: relative;">#}
+{#                            <input class="form-control" readonly type="text" data-toggle="city-picker"#}
+{#                                   placeholder="点击从下拉面板中选择省/市/景点" style="width:60%;">#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <h5>景点五:</h5>#}
+{##}
+{#                    <div class="form-inline">#}
+{#                        <div style="position: relative;">#}
+{#                            <input class="form-control" readonly type="text" data-toggle="city-picker"#}
+{#                                   placeholder="点击从下拉面板中选择省/市/景点" style="width:60%;">#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <h5>景点六:</h5>#}
+{##}
+{#                    <div class="form-inline">#}
+{#                        <div style="position: relative;">#}
+{#                            <input class="form-control" readonly type="text" data-toggle="city-picker"#}
+{#                                   placeholder="点击从下拉面板中选择省/市/景点" style="width:60%;">#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <h5>景点七:</h5>#}
+{##}
+{#                    <div class="form-inline">#}
+{#                        <div style="position: relative;">#}
+{#                            <input class="form-control" readonly type="text" data-toggle="city-picker"#}
+{#                                   placeholder="点击从下拉面板中选择省/市/景点" style="width:60%;">#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <h5>景点八:</h5>#}
+{##}
+{#                    <div class="form-inline">#}
+{#                        <div style="position: relative;">#}
+{#                            <input class="form-control" readonly type="text" data-toggle="city-picker"#}
+{#                                   placeholder="点击从下拉面板中选择省/市/景点" style="width:60%;">#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <h5>景点九:</h5>#}
+{##}
+{#                    <div class="form-inline">#}
+{#                        <div style="position: relative;">#}
+{#                            <input class="form-control" readonly type="text" data-toggle="city-picker"#}
+{#                                   placeholder="点击从下拉面板中选择省/市/景点" style="width:60%;">#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <h5>景点十:</h5>#}
+{##}
+{#                    <div class="form-inline">#}
+{#                        <div style="position: relative;">#}
+{#                            <input class="form-control" readonly type="text" data-toggle="city-picker"#}
+{#                                   placeholder="点击从下拉面板中选择省/市/景点" style="width:60%;">#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="form-group">#}
+{#                    <label for="route_keywords" class="col-md-3 control-label">路线关键字：</label>#}
+{#                    <div class="col-md-9">#}
+{#                        <input type="text" class="form-control" id="route_keywords" required name="route_keywords">#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="form-group">#}
+{#                    <div class="col-md-4 col-md-offset-4">#}
+{#                        <div id="test_button" class="btn btn btn-primary btn-block">#}
+{#                            添加#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="form-group">#}
+{#                    <div class="col-md-4 col-md-offset-4">#}
+{#                        <button class="btn btn btn-primary btn-block" type="submit">提交</button>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#            </form>#}
+{#        </div>#}
+{#    </div>#}
+
+    <section class="works" id="gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="sec-head">
+                        <h2>创建<span>旅游路线</span></h2>
+                        <hr>
                     </div>
                 </div>
-                <div class="container route-container">
+                <form method="post" role="form">
+                    {% csrf_token %}
+                    <div class="col-md-12">
+                        <div class="work-sec">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="route_name" required name="route_name" placeholder="路线名称" autofocus>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="container route-container">
                     <h5>景点一:</h5>
 
                     <div class="form-inline">
@@ -107,23 +242,32 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <div class="col-md-4 col-md-offset-4">
-                        <div id="test_button" class="btn btn btn-primary btn-block">
-                            添加旅游景点
+                    </div>
+                    <div class="col-md-12" style="margin-top: 3em;">
+                        <div class="work-sec">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="route_name" required name="route_keywords" placeholder="路线关键字" autofocus>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4 col-md-offset-4">
-                        <button class="btn btn btn-primary btn-block" type="submit">提交</button>
+                    <div class="col-md-12">
+                        <div class="work-sec">
+                            <div class="form-group">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <div id="test_button" class="btn btn btn-primary btn-block">
+                                        添加
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </form>
 
-            </form>
+            </div>
         </div>
-    </div>
+    </section>
     <script src="{% static 'js/data_temp.js'%}"></script>
 {#    <script src="{% static 'js/city-picker.js'%}"></script>#}
 {#    <script src="{% static 'js/main.js'%}"></script>#}
@@ -131,16 +275,15 @@
     <script>
     $("#test_button").click(function(){
         var route_name = $("input[name='route_name']").val();
+        var route_keywords = $("input[name='route_keywords']").val();
         var route_detail_list = [];
         $("span[data-count='district']").each(function () {
             route_detail_list.push(parseInt($(this).attr("data-code")));
 {#            console.log($(this).attr("data-code"));#}
         });
-        console.log(route_name);
-        console.log(route_detail_list);
         var route_detail_string = route_detail_list.join(',');
-        $.post("", { 'route_name': route_name, 'route_detail_string': route_detail_string } );
-{#        window.location.href="/personal/";#}
+        $.post("", { 'route_name': route_name, 'route_detail_string': route_detail_string, 'route_keywords': route_keywords } );
+        window.location.href="/show_routes/";
     });
 
 

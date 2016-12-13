@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('authonline.urls')),
     url(r'', include('travel.urls')),
+    url(r'', include('blog.urls')),
 ]

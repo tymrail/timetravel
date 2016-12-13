@@ -1,0 +1,119 @@
+{% extends "base/base_person.html" %}
+{% load staticfiles %}
+{% block title %}Time Travel{% endblock %}
+
+{% block content %}
+<div id="main">
+
+
+
+
+					<!-- Five -->
+
+						<section id="five">
+							<div class="container">
+								<h3>路线</h3>
+								<section>
+									<h4>热门旅游路线</h4>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Title</th>
+													<th>Description</th>
+													<th>Keywords</th>
+                                                    <th>Create Date</th>
+												</tr>
+											</thead>
+											<tbody>
+                                                {% for route in all_route %}
+												<tr>
+													<td>
+                                                        <a href="/route_detail/?route_id={{ route.route_info.route_id }}">
+                                                            {{ route.route_info.route_name }}
+                                                        </a>
+                                                    </td>
+													<td>
+                                                        {% for attraction in route.route_sights %}
+                                                            <a href="/attraction_info/?attraction_id={{ attraction.attraction_id }}">{{ attraction.attraction_title }}</a>,
+                                                        {% endfor %}
+                                                    </td>
+													<td>{{ route.route_info.route_keywords }}</td>
+                                                    <td>{{ route.route_info.route_create_time }}</td>
+												</tr>
+                                                {% endfor %}
+											</tbody>
+										</table>
+									</div>
+
+									<h4>我创建的路线</h4>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Keywords</th>
+                                                    <th>Create Date</th>
+												</tr>
+											</thead>
+											<tbody>
+                                                {% for route in route_create_list %}
+												<tr>
+													<td>
+                                                        <a href="/route_detail/?route_id={{ route.route_self.route_id }}">
+                                                            {{ route.route_self.route_name }}
+                                                        </a>
+                                                    </td>
+													<td>
+                                                        {% for attraction in route.route_attractions %}
+                                                            <a href="/attraction_info/?attraction_id={{ attraction.attraction_id }}">{{ attraction.attraction_title }}</a>,
+                                                        {% endfor %}
+                                                    </td>
+													<td>{{ route.route_self.route_keywords }}</td>
+                                                    <td>{{ route.route_self.route_create_time }}</td>
+												</tr>
+                                                {% endfor %}
+											</tbody>
+										</table>
+									</div>
+                                    <h4>我选择的路线</h4>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Keywords</th>
+                                                    <th>Create Date</th>
+												</tr>
+											</thead>
+											<tbody>
+                                                {% for route in route_own %}
+												<tr>
+													<td>
+                                                        <a href="/route_detail/?route_id={{ route.route_self.route_id }}">
+                                                            {{ route.route_self.route_name }}
+                                                        </a>
+                                                    </td>
+													<td>
+                                                        {% for attraction in route.route_attractions %}
+                                                            <a href="/attraction_info/?attraction_id={{ attraction.attraction_id }}">{{ attraction.attraction_title }}</a>,
+                                                        {% endfor %}
+                                                    </td>
+													<td>{{ route.route_self.route_keywords }}</td>
+                                                    <td>{{ route.route_self.route_create_time }}</td>
+												</tr>
+                                                {% endfor %}
+											</tbody>
+										</table>
+									</div>
+								</section>
+							</div>
+						</section>
+
+
+				</div>
+{% endblock %}
+
+

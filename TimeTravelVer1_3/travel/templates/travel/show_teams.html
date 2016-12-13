@@ -1,0 +1,119 @@
+{% extends "base/base_person.html" %}
+{% load staticfiles %}
+{% block title %}Time Travel{% endblock %}
+
+{% block content %}
+<div id="main">
+                <section id="five">
+							<div class="container">
+								<h3>组队</h3>
+
+								<section>
+									<h4>所有队伍</h4>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Route</th>
+                                                    <th>Create Date</th>
+												</tr>
+											</thead>
+											<tbody>
+                                                {% for team in all_teams %}
+												<tr>
+													<td>
+                                                        <a href="/team_detail/?team_id={{ team.team_id }}">
+                                                            {{ team.team_name }}
+                                                        </a>
+                                                    </td>
+													<td>
+                                                        {{ team.team_creator }}
+                                                    </td>
+													<td>
+                                                        <a href="/route_detail/?route_id={{ team.team_route_id }}">
+                                                            {{ team.team_route }}
+                                                        </a>
+                                                    </td>
+                                                    <td>{{ team.team_create_time }}</td>
+												</tr>
+                                                {% endfor %}
+											</tbody>
+										</table>
+									</div>
+                                    <h4>我创建的队伍</h4>
+                                    <div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Route</th>
+                                                    <th>Create Date</th>
+												</tr>
+											</thead>
+											<tbody>
+                                                {% for team in teams_create %}
+												<tr>
+													<td>
+                                                        <a href="/team_detail/?team_id={{ team.team_id }}">
+                                                            {{ team.team_name }}
+                                                        </a>
+                                                    </td>
+													<td>
+                                                        {{ team.team_creator }}
+                                                    </td>
+													<td>
+                                                        <a href="/route_detail/?route_id={{ team.team_route_id }}">
+                                                            {{ team.team_route }}
+                                                        </a>
+                                                    </td>
+                                                    <td>{{ team.team_create_time }}</td>
+												</tr>
+                                                {% endfor %}
+											</tbody>
+										</table>
+									</div>
+                                    <h4>我加入的队伍</h4>
+                                    <div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Route</th>
+                                                    <th>Create Date</th>
+												</tr>
+											</thead>
+											<tbody>
+                                                {% for team in teams_member %}
+												<tr>
+													<td>
+                                                        <a href="/team_detail/?team_id={{ team.team_id }}">
+                                                            {{ team.team_name }}
+                                                        </a>
+                                                    </td>
+													<td>
+                                                        {{ team.team_creator }}
+                                                    </td>
+													<td>
+                                                        <a href="/route_detail/?route_id={{ team.team_route_id }}">
+                                                            {{ team.team_route }}
+                                                        </a>
+                                                    </td>
+                                                    <td>{{ team.team_create_time }}</td>
+												</tr>
+                                                {% endfor %}
+											</tbody>
+										</table>
+									</div>
+
+								</section>
+							</div>
+						</section>
+
+
+				</div>
+{% endblock %}
+

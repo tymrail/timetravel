@@ -1,0 +1,49 @@
+{% extends "base/base_person.html" %}
+{% load staticfiles %}
+{% block title %}Time Travel{% endblock %}
+
+{% block content %}
+<div id="main">
+					<!-- Four -->
+						<section id="four">
+							<div class="container">
+								<h3>新建文章</h3>
+								<p>Lorem</p>
+								<form method="post" role="form">
+                                    {% csrf_token %}
+									<div class="row uniform">
+										<div class="12u"><input type="text" name="blog_title" id="name" placeholder="题目" /></div>
+									</div>
+									<div class="row uniform">
+										<div class="12u"><input type="text" name="blog_intro" id="subject" placeholder="简介" /></div>
+									</div>
+									<div class="row uniform">
+										<div class="12u"><textarea name="blog_text" id="message" placeholder="正文" rows="6"></textarea></div>
+									</div>
+                                    <div class="row uniform">
+										<div class="12u">
+                                            <select class="form-control sellone" title="search_select" name="blog_city_id">
+                                                {% for c in city %}
+                                                    <option value="{{ c.city_id }}">
+                                                        {{ c.city_name }}&nbsp;&nbsp;&nbsp;
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+									</div>
+									<div class="row uniform">
+										<div class="12u">
+											<ul class="actions">
+												<li><input type="submit" class="special" value="保存" /></li>
+												<li><input type="reset" value="RESET" /></li>
+											</ul>
+										</div>
+									</div>
+								</form>
+							</div>
+						</section>
+				</div>
+{% endblock %}
+
+
+

@@ -23,6 +23,7 @@
         <option value="$MODULE_DIR$/templates" />
         <option value="$MODULE_DIR$/authonline/templates" />
         <option value="$MODULE_DIR$/travel/templates" />
+        <option value="$MODULE_DIR$/blog/templates" />
       </list>
     </option>
   </component>

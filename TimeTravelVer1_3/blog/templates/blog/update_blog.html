@@ -1,0 +1,54 @@
+{% extends "base/base_person.html" %}
+{% load staticfiles %}
+{% block title %}Time Travel{% endblock %}
+
+{% block content %}
+<div id="main">
+						<section id="four">
+							<div class="container">
+								<h3>新建文章</h3>
+								<p>Lorem</p>
+								<form method="post" role="form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="blog_id" id="name" value="{{ blog.blog_id }}" />
+									<div class="row uniform">
+										<div class="12u"><input type="text" name="blog_title" id="name" value="{{ blog.blog_title }}" /></div>
+									</div>
+									<div class="row uniform">
+										<div class="12u"><input type="text" name="blog_intro" id="subject" value="{{ blog.blog_intro }}" /></div>
+									</div>
+									<div class="row uniform">
+										<div class="12u"><textarea name="blog_text" id="message" rows="6">{{ blog.blog_text }}</textarea></div>
+									</div>
+                                    <div class="row uniform">
+										<div class="12u">
+                                            <select class="form-control sellone" title="search_select" name="blog_city_id">
+                                                {% for c in city %}
+                                                    {% if c.city_title == blog.blog_city.city_title %}
+                                                        <option value="{{ c.city_id }}" selected="selected">
+                                                            {{ c.city_name }}&nbsp;&nbsp;&nbsp;
+                                                        </option>
+                                                    {% else %}
+                                                        <option value="{{ c.city_id }}">
+                                                            {{ c.city_name }}&nbsp;&nbsp;&nbsp;
+                                                        </option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+									</div>
+									<div class="row uniform">
+										<div class="12u">
+											<ul class="actions">
+												<li><input type="submit" class="special" value="保存" /></li>
+												<li><input type="reset" value="RESET" /></li>
+											</ul>
+										</div>
+									</div>
+								</form>
+							</div>
+						</section>
+				</div>
+{% endblock %}
+
+

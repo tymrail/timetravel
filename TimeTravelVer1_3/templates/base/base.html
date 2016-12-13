@@ -40,12 +40,12 @@
 									<div class="collapse navbar-collapse navbar-right" id="myNavbar">
 									    <ul class="nav navbar-nav">
 									     	<li class="active"><a href="{% url 'homepage' %}">Home</a></li>
-									        <li><a href="#listed">Listing</a></li>
-									        <li><a href="#agents">Agents</a></li>
+									        <li><a href="{% url 'show_routes' %}">Routes</a></li>
+                                            <li><a href="{% url 'show_teams' %}">Teams</a></li>
+                                            <li><a href="{% url 'view_all_blog' %}">Blog</a></li>
                                             {% if user %}
-                                                <li><a href="{% url 'create_route' %}">Create Route</a></li>
-									     		<li><a href="{% url 'logout' %}">Sign out</a></li>
-                        						<li><a href="{% url 'set_password' %}">Reset PassWord</a></li>
+                                                <li><a href="{% url 'personal' %}">Personal</a></li>
+                                                <li><a href="{% url 'logout' %}">Sign out</a></li>
 									     	{% else %}
 									     		<li><a href="{% url 'signup' %}">Signup</a></li>
                         						<li><a href="{% url 'login' %}">Signin</a></li>
@@ -145,62 +145,20 @@
 
         {% block content %}{% endblock %}
 
-		<!--news section-->
-		<section class="news" id="news">
-			<div class="container">
-				<div class="row">
-						<div class="news-sec">
-							<div class="col-md-12">
-								<div class="sec-head">
-									<h2>Breaking <span>News</span></h2>
-									<hr>
-								</div>
-							</div>
-							<div class="news-colm">
-								<div class="col-md-4">
-									<div class="news-itm">
-										<h4>We Fullfill Your Dream</h4>
-										<hr class="news-line">
-										<p>Fusce risus metus, placerat in consectetur eu, porttitor a est sed sed dolor lorem cras adipiscing</p>
-										<a href="#" class="nws-btn">Read More</a>
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="news-itm">
-										<h4>We Fullfill Your Dream</h4>
-										<hr class="news-line">
-										<p>Fusce risus metus, placerat in consectetur eu, porttitor a est sed sed dolor lorem cras adipiscing</p>
-										<a href="#" class="nws-btn">Read More</a>
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="news-itm">
-										<h4>We Fullfill Your Dream</h4>
-										<hr class="news-line">
-										<p>Fusce risus metus, placerat in consectetur eu, porttitor a est sed sed dolor lorem cras adipiscing</p>
-										<a href="#" class="nws-btn">Read More</a>
-									</div>
-								</div>
-							</div>
-						</div>
-				</div>
-			</div>
-		</section>
-
 
 		<!--news section-->
-		<section class="contact" id="contact">
+		<section class="contact" id="contact" style="margin-top: 6em;">
 			<div class="container">
 				<div class="contact-info">
 					<div class="col-md-12">
 						<div class="col-md-8">
 							<div class="cont-txt">
-								<h3>Contact Us to Sign Up for an Open House</h3>
+								<h3>Sign Up for an Fantastic Journey.</h3>
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vehicula dapibus mauris.</p>
 							</div>
 						</div>
 						<div class="col-md-4 text-center">
-							<a href="#" class="cont-btn">Contact Us</a>
+							<a href="{% url 'signup' %}" class="cont-btn">Sign Up</a>
 						</div>
 					</div>
 				</div>

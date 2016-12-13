@@ -1,0 +1,45 @@
+{% extends "base/base_person.html" %}
+{% load staticfiles %}
+{% block title %}Time Travel{% endblock %}
+
+{% block content %}
+<div id="main">
+
+					<!-- One -->
+						<section id="one">
+							<div class="container">
+								<header class="major">
+									<h2>{{ blog_exact.blog_title }}</h2>
+									<p>{{ blog_exact.blog_author }}<br />
+									{{ blog_exact.blog_intro }}</p>
+								</header>
+                                <p>{{ blog_exact.blog_text }}</p>
+                                <div>
+                                    <a href="/like_blog/?blog_id={{ blog_exact.blog_id }}">like({{ blog_exact.blog_popular }})</a>
+                                    {% if update_permission is True %}
+                                        <a href="/delete_blog/?blog_id={{ blog_exact.blog_id }}&operate=delete">delete</a>
+                                        <a href="/update_blog/?blog_id={{ blog_exact.blog_id }}">update</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+						</section>
+
+					<!-- Two -->
+						<section id="two">
+							<div class="container">
+								<h3>Things I Can Do</h3>
+								<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer lorem ipsum dolor sit amet.</p>
+								<ul class="feature-icons">
+									<li class="fa-code">Write all the code</li>
+									<li class="fa-cubes">Stack small boxes</li>
+									<li class="fa-book">Read books and stuff</li>
+									<li class="fa-coffee">Drink much coffee</li>
+									<li class="fa-bolt">Lightning bolt</li>
+									<li class="fa-users">Shadow clone technique</li>
+								</ul>
+							</div>
+						</section>
+
+				</div>
+{% endblock %}
+

@@ -5,14 +5,13 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 
-from authonline.models import MyUser, City, Attraction, Team, TeamRelation
-# Route, RouteRelation,
+from authonline.models import MyUser, City, Attraction, Team, TeamRelation, Route, RouteRelation
+from blog.models import Blog
 from django.contrib.auth.decorators import user_passes_test, login_required
 
 
 def index(request):
     user = request.user if request.user.is_authenticated() else None
-    user_n = user.username
     if request.method == 'POST':
         search_key = request.POST.get('search_key')
         if search_key == 'city':
@@ -81,12 +80,14 @@ def attractions(request):
         city = City.objects.filter(city_id__exact=city_id)
         attraction_list = Attraction.objects.filter(attraction_city__city_id__exact=city_id)
         state = 'city_attraction'
+        blog_4_city = Blog.objects.filter(blog_city=city)
 
         content = {
             'user': user,
             'active_menu': 'attractions',
             'state': state,
             'city': city[0],
+            'blog_4_city': blog_4_city,
             'attraction_list': attraction_list[0:20],
         }
     else:
@@ -113,6 +114,12 @@ def attraction_info(request):
             'x': float(mapxy_list[0]),
             'y': float(mapxy_list[1]),
         }
+        relate_route = list()
+        routes_all = Route.objects.all()
+        for route in routes_all:
+            route_lists = route.get_route_detail()
+            if int(attraction_id) in route.get_route_detail():
+                relate_route.append(route)
     else:
         return HttpResponseRedirect(reverse('homepage'))
     content = {
@@ -121,6 +128,7 @@ def attraction_info(request):
         'attraction_info': attraction_detail,
         'mapxy': mapxy,
         'state': 'attraction_info',
+        'relate_routes': relate_route,
     }
 
     return render(request, 'travel/attraction_info.html', content)
@@ -135,19 +143,41 @@ def show_routes(request):
     # if request.method == 'GET' and request.GET('user_name'):
     #     my_route = Route.objects.get(route_owner__username__exact=request.GET.get('user_name'))
 
-    state = 'out'
-    my_route = list()
-    if user is not None:
-        my_route_list = Route.objects.get(route_owner__username__exact=user.username)
-        my_route = get_routes(my_route_list)
-        state = 'in'
+    user_create_routes = Route.objects.filter(route_creator__username__exact=user.username)
+
+    user_create_routes_list = list()
+
+    for uor in user_create_routes:
+        route_attractions = list()
+        for i in uor.get_route_detail():
+            route_attractions.append(Attraction.objects.filter(attraction_id__exact=i)[0])
+        user_create_routes_list.append({
+            'route_self': uor,
+            'route_attractions': route_attractions,
+        })
+
+    user_own_routes_relations = RouteRelation.objects.filter(route_relation_owner__username__exact=user.username)
+
+    user_own_routes_list = list()
+    for ur in user_own_routes_relations:
+        # user_own_routes_list.append(Route.objects.filter(route_id__exact=ur.route_relation_id)[0])
+        route_own_l = Route.objects.filter(route_id__exact=ur.route_relation_id)
+        if len(route_own_l) > 0:
+            route_own = route_own_l[0]
+        route_own_attractions = list()
+        for i in route_own.get_route_detail():
+            route_own_attractions.append(Attraction.objects.get(attraction_id__exact=int(i)))
+        user_own_routes_list.append({
+            'route_self': route_own,
+            'route_attractions': route_own_attractions,
+        })
 
     content = {
         'user': user,
         'active_menu': 'show_routes',
         'all_route': all_route,
-        'my_route': my_route,
-        'state': state,
+        'route_create_list': user_create_routes_list,
+        'route_own': user_own_routes_list,
     }
 
     return render(request, 'travel/show_routes.html', content)
@@ -168,39 +198,6 @@ def get_routes(routes_list):
     return all_route
 
 
-# @login_required
-# def create_or_update_route(request):
-#     user = request.user if request.user.is_authenticated() else None
-#     if user is None:
-#         return HttpResponseRedirect(reverse('homepage'))
-#
-#     if request.method == 'POST':
-#         if request.POST('route_id'):
-#             update_route = Route.objects.filter(route_id__exact=request.POST.get('route_id'))
-#             update_route.update(
-#                 route_name=request.POST.get('route_name'),
-#             )
-#             update_route.set_route_detail(request.POST.getlist('route_detail_list'))
-#         else:
-#             user_add_to = User.objects.get(username__exact=user.username)
-#             new_route = Route(
-#                 route_name=request.POST.get('route_name', ''),
-#                 route_creator=user_add_to,
-#             )
-#             route_detail_list = request.POST.getlist('route_detail_list', [])
-#             new_route.set_route_detail(route_detail_list)
-#             new_route.save()
-#             new_route.route_owner.add(user_add_to)
-#
-#     elif request.method == 'GET':
-#         if request.GET.get('option') == 'create':
-#
-#             route_exact = Route.objects.filter(route_id__exact=request.GET.get('route_id'))
-#             route = get_routes(route_exact)[0]
-
-# TODO 针对拥有相同旅游路线的/旅游路线拥有相同关键字的人进行队友推荐
-
-
 @csrf_exempt
 @login_required
 def create_route(request):
@@ -213,6 +210,7 @@ def create_route(request):
     if request.method == 'POST':
         new_route = Route(
             route_name=request.POST.get('route_name', ''),
+            route_keywords=request.POST.get('route_keywords', ''),
             route_creator=user,
         )
         route_detail_string = request.POST.get('route_detail_string', '')
@@ -234,6 +232,33 @@ def create_route(request):
     }
 
     return render(request, 'travel/create_route.html', content)
+
+
+def route_detail(request):
+    user = request.user if request.user.is_authenticated() else None
+    if request.method == 'GET' and 'route_id' in request.GET:
+        route_exact = Route.objects.filter(route_id__exact=request.GET.get('route_id', ''))[0]
+        route_attractions = list()
+        for i in route_exact.get_route_detail():
+            route_attractions.append(Attraction.objects.filter(attraction_id__exact=i)[0])
+        updateble = (route_exact.route_creator == user)
+        is_owner = (user in User.objects.filter(route_relation__route_relation_id__exact=route_exact.route_id))
+
+        content = {
+            'user': user,
+            'route': route_exact,
+            'route_attractions': route_attractions,
+            'updateble': updateble,
+            'is_owner': is_owner,
+        }
+
+        if is_owner is True:
+            rec_teams = Team.objects.filter(team_route__exact=route_exact)\
+                .exclude(team_member__team_relation_member__username=user.username)
+            content['rec_teams'] = rec_teams
+        return render(request, 'travel/route_detail.html', content)
+    else:
+        return HttpResponseRedirect(reverse('personal'))
 
 
 @login_required
@@ -262,26 +287,27 @@ def operate_route(request):
 @login_required
 def join_route(request):
     user = request.user if request.user.is_authenticated() else None
-    if request.method == 'GET' and request.GET('route_id'):
+    if request.method == 'GET' and 'route_id' in request.GET:
         route_join = Route.objects.filter(route_id__exact=request.GET.get('route_id'))
         new_route_relation = RouteRelation(
-            route_relation_id=route_join.route_id,
+            route_relation_id=route_join[0].route_id,
             route_relation_owner=user,
         )
         new_route_relation.save()
-        route_join.route_owner.add(new_route_relation)
-        route_join.update(route_popular=route_join.route_popular+1)
-    return HttpResponseRedirect(reverse('personal'))
+        route_join[0].route_owner.add(new_route_relation)
+        route_join.update(route_popular=route_join[0].route_popular+1)
+        return HttpResponseRedirect('/route_detail/?route_id=' + str(route_join[0].route_id))
+    return HttpResponseRedirect(reverse('homepage'))
 
 
 @login_required
 def quit_route(request):
     user = request.user if request.user.is_authenticated() else None
-    if request.method == 'GET' and request.GET('route_id'):
+    if request.method == 'GET' and 'route_id' in request.GET:
         RouteRelation.objects\
             .filter(route_relation_id=request.GET.get('route_id'))\
-            .filter(route_relation_owner=user.username).delete()
-    return HttpResponseRedirect(reverse('personal'))
+            .filter(route_relation_owner__username__exact=user.username).delete()
+        return HttpResponseRedirect('/route_detail/?route_id=' + str(request.GET.get('route_id')))
 
 
 @login_required
@@ -291,11 +317,13 @@ def create_team(request):
         return HttpResponseRedirect(reverse('login'))
 
     state = 'unknown'
+    my_routes = get_my_route(user)
 
     if request.method == 'POST':
         new_team = Team(
             team_name=request.POST.get('team_name', ''),
             team_creator=user,
+            team_route=Route.objects.get(route_id__exact=request.POST.get('team_route', '')),
         )
 
         new_team.save()
@@ -306,14 +334,51 @@ def create_team(request):
             team_relation_member=user,
         )
         new_team_relation.save()
-        new_team.route_owner.add(new_team_relation)
+        new_team.team_member.add(new_team_relation)
         state = 'success'
 
     content = {
+        'my_routes': my_routes,
         'state': state,
     }
 
     return render(request, 'travel/create_team.html', content)
+
+
+def team_detail(request):
+    user = request.user if request.user.is_authenticated() else None
+    if request.method == 'GET' and 'team_id' in request.GET:
+        team_id = request.GET.get('team_id')
+        team_exact = Team.objects.get(team_id__exact=team_id)
+        team_creator = User.objects.get(team_creator__team_id__exact=team_id)
+        team_members = User.objects.filter(team_relation__team_relation_id__exact=team_id)
+        team_route = Route.objects.get(team_route__team_id__exact=team_id)
+        team_route_attractions = list()
+        for i in team_route.get_route_detail():
+            team_route_attractions.append(Attraction.objects.filter(attraction_id__exact=i)[0])
+        updateble = (team_exact.team_creator == user)
+        is_owner = (user in User.objects.filter(team_relation__team_relation_id=team_id))
+        content = {
+            'team': team_exact,
+            'team_creator': team_creator,
+            'team_members': team_members,
+            'team_route': team_route,
+            'team_route_attractions': team_route_attractions,
+            'updateble': updateble,
+            'is_owner': is_owner,
+        }
+        return render(request, 'travel/team_detail.html', content)
+    return HttpResponseRedirect(reverse('homepage'))
+
+
+def get_my_route(usr):
+    my_route_relation_list = RouteRelation.objects.filter(route_relation_owner__username__exact=usr.username)
+    user_own_routes_list = list()
+    for ur in my_route_relation_list:
+        if len(Route.objects.filter(route_id__exact=ur.route_relation_id)) > 0:
+            user_own_routes_list.append(Route.objects.filter(route_id__exact=ur.route_relation_id)[0])
+    my_route = get_routes(user_own_routes_list)
+    return my_route
 
 
 @login_required
@@ -341,26 +406,70 @@ def operate_team(request):
 @login_required
 def join_team(request):
     user = request.user if request.user.is_authenticated() else None
-    if request.method == 'GET' and request.GET('team_id'):
+    if request.method == 'GET' and 'team_id' in request.GET:
         team_join = Team.objects.filter(team_id__exact=request.GET.get('team_id'))
         new_team_relation = TeamRelation(
-            team_relation_id=team_join.team_id,
+            team_relation_id=team_join[0].team_id,
             team_relation_member=user,
         )
         new_team_relation.save()
-        team_join.team_member.add(new_team_relation)
-        team_join.update(team_popular=team_join.team_popular+1)
-    return HttpResponseRedirect(reverse('personal'))
+        team_join[0].team_member.add(new_team_relation)
+    return HttpResponseRedirect('/team_detail/?team_id=' + str(request.GET.get('team_id')))
 
 
 @login_required
 def quit_team(request):
     user = request.user if request.user.is_authenticated() else None
-    if request.method == 'GET' and request.GET('team_id'):
+    if request.method == 'GET' and 'team_id' in request.GET:
         TeamRelation.objects\
             .filter(team_relation_id=request.GET.get('team_id'))\
-            .filter(team_relation_member=user.username).delete()
-    return HttpResponseRedirect(reverse('personal'))
+            .filter(team_relation_member=user).delete()
+    return HttpResponseRedirect('/team_detail/?team_id=' + str(request.GET.get('team_id')))
+
+
+def show_teams(request):
+    user = request.user if request.user.is_authenticated() else None
+
+    all_teams = Team.objects.all().order_by('-team_modified_time')[:10]
+
+    content = {'all_teams': all_teams}
+
+    if user is not None:
+        teams_create = Team.objects.filter(team_creator=user)
+
+        teams_relation_member = TeamRelation.objects.filter(team_relation_member=user)
+        teams_member = list()
+        for team_relation in teams_relation_member:
+            team_exact = Team.objects.filter(team_id__exact=team_relation.team_relation_id)
+            if len(team_exact) > 0:
+                teams_member.append(team_exact[0])
+
+        content['teams_create'] = teams_create
+        content['teams_member'] = teams_member
+
+    return render(request, 'travel/show_teams.html', content)
+
+
+def get_team_route(team_id, usr):
+    team_exact = Team.objects.get(team_id__exact=team_id)
+    team_creator = User.objects.get(team_creator__team_id__exact=team_id)
+    team_members = User.objects.filter(team_relation__team_relation_id__exact=team_id)
+    team_route = Route.objects.get(team_route__team_id__exact=team_id)
+    team_route_attractions = list()
+    for i in team_route.get_route_detail():
+        team_route_attractions.append(Attraction.objects.filter(attraction_id__exact=i)[0])
+    updateble = (team_exact.team_creator == usr)
+    is_owner = (usr in User.objects.filter(team_relation__team_relation_id=team_id))
+    content = {
+        'team': team_exact,
+        'team_creator': team_creator,
+        'team_members': team_members,
+        'team_route': team_route,
+        'team_route_attractions': team_route_attractions,
+        'updateble': updateble,
+        'is_owner': is_owner,
+    }
+    return content
 
 
 @login_required
@@ -368,15 +477,52 @@ def personal(request):
     user = request.user if request.user.is_authenticated() else None
     if user is None:
         return HttpResponseRedirect(reverse('login'))
-    # TODO personal page
+
+    blog = Blog.objects.filter(blog_author=user)
 
     user_create_routes = Route.objects.filter(route_creator__username__exact=user.username)
 
+    user_create_routes_list = list()
 
+    for uor in user_create_routes:
+        route_attractions = list()
+        for i in uor.get_route_detail():
+            route_attractions.append(Attraction.objects.filter(attraction_id__exact=i)[0])
+        user_create_routes_list.append({
+            'route_self': uor,
+            'route_attractions': route_attractions,
+        })
+
+    user_own_routes_relations = RouteRelation.objects.filter(route_relation_owner__username__exact=user.username)
+
+    user_own_routes_list = list()
+    for ur in user_own_routes_relations:
+        # user_own_routes_list.append(Route.objects.filter(route_id__exact=ur.route_relation_id)[0])
+        route_own = Route.objects.filter(route_id__exact=ur.route_relation_id)[0]
+        route_own_attractions = list()
+        for i in route_own.get_route_detail():
+            route_own_attractions.append(Attraction.objects.get(attraction_id__exact=int(i)))
+        user_own_routes_list.append({
+            'route_self': route_own,
+            'route_attractions': route_own_attractions,
+        })
+
+    teams_create = Team.objects.filter(team_creator=user)
+
+    teams_relation_member = TeamRelation.objects.filter(team_relation_member=user)
+    teams_member = list()
+    for team_relation in teams_relation_member:
+        team_exact = Team.objects.filter(team_id__exact=team_relation.team_relation_id)[0]
+        teams_member.append(team_exact)
 
     content = {
         'user': user,
         'active_menu': 'personal',
+        'route_create_list': user_create_routes_list,
+        'route_own': user_own_routes_list,
+        'blog': blog,
+        'teams_create': teams_create,
+        'teams_member': teams_member,
     }
 
     return render(request, 'travel/personal.html', content)
