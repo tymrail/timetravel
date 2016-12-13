@@ -46,11 +46,19 @@
                                     <div class="col-md-12">
                                         <img src="{% static 'images/attractions/' %}{{ attraction_info.attraction_title }}.jpg">
                                     </div>
-                                    {% for route in relate_routes %}
-                                        <a href="/route_detail/?route_id={{ route.route_id }}">
-                                            <p>{{ route.route_name }}</p>
-                                        </a>
-                                    {% endfor %}
+                                    <div class="col-md-12">
+                                        <div class="sec-head">
+                                            <h2 style="margin: 1em 0;">相关旅游路线推荐</h2>
+                                        </div>
+                                        {% for route in relate_routes %}
+                                            <div class="col-md-12">
+                                                <div class="news-itm" style="border: 2px solid #0099CC; padding:1em 2em;">
+                                                    <h4 style="font-size: 1.5em;">{{ route.route_name }}</h4>
+                                                    <a href="/route_detail/?route_id={{ route.route_id }}" class="nws-btn">了解更多</a>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
                                 </div>
                             </div>
                         </div>

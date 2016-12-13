@@ -24,4 +24,4 @@ class Blog(models.Model):
         return self.blog_title
 
     class Meta:
-        ordering = ['-blog_modified_date']
+        ordering = ['-blog_popular']

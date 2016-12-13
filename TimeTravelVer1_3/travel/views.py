@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 
 from authonline.models import MyUser, City, Attraction, Team, TeamRelation, Route, RouteRelation
-
+from blog.models import Blog
 from django.contrib.auth.decorators import user_passes_test, login_required
 
 
@@ -80,12 +80,14 @@ def attractions(request):
         city = City.objects.filter(city_id__exact=city_id)
         attraction_list = Attraction.objects.filter(attraction_city__city_id__exact=city_id)
         state = 'city_attraction'
+        blog_4_city = Blog.objects.filter(blog_city=city)
 
         content = {
             'user': user,
             'active_menu': 'attractions',
             'state': state,
             'city': city[0],
+            'blog_4_city': blog_4_city,
             'attraction_list': attraction_list[0:20],
         }
     else:
@@ -141,23 +143,39 @@ def show_routes(request):
     # if request.method == 'GET' and request.GET('user_name'):
     #     my_route = Route.objects.get(route_owner__username__exact=request.GET.get('user_name'))
 
-    state = 'out'
-    my_route = list()
-    if user is not None:
-        my_route_relation_list = RouteRelation.objects.filter(route_relation_owner__username__exact=user.username)
-        user_own_routes_list = list()
-        for ur in my_route_relation_list:
-            if len(Route.objects.filter(route_id__exact=ur.route_relation_id)) > 0:
-                user_own_routes_list.append(Route.objects.filter(route_id__exact=ur.route_relation_id)[0])
-        my_route = get_routes(user_own_routes_list)
-        state = 'in'
+    user_create_routes = Route.objects.filter(route_creator__username__exact=user.username)
+
+    user_create_routes_list = list()
+
+    for uor in user_create_routes:
+        route_attractions = list()
+        for i in uor.get_route_detail():
+            route_attractions.append(Attraction.objects.filter(attraction_id__exact=i)[0])
+        user_create_routes_list.append({
+            'route_self': uor,
+            'route_attractions': route_attractions,
+        })
+
+    user_own_routes_relations = RouteRelation.objects.filter(route_relation_owner__username__exact=user.username)
+
+    user_own_routes_list = list()
+    for ur in user_own_routes_relations:
+        # user_own_routes_list.append(Route.objects.filter(route_id__exact=ur.route_relation_id)[0])
+        route_own = Route.objects.filter(route_id__exact=ur.route_relation_id)[0]
+        route_own_attractions = list()
+        for i in route_own.get_route_detail():
+            route_own_attractions.append(Attraction.objects.get(attraction_id__exact=int(i)))
+        user_own_routes_list.append({
+            'route_self': route_own,
+            'route_attractions': route_own_attractions,
+        })
 
     content = {
         'user': user,
         'active_menu': 'show_routes',
         'all_route': all_route,
-        'my_route': my_route,
-        'state': state,
+        'route_create_list': user_create_routes_list,
+        'route_own': user_own_routes_list,
     }
 
     return render(request, 'travel/show_routes.html', content)
@@ -176,8 +194,6 @@ def get_routes(routes_list):
         }
         all_route.append(route_temp)
     return all_route
-
-# TODO 针对拥有相同旅游路线的/旅游路线拥有相同关键字的人进行队友推荐
 
 
 @csrf_exempt
@@ -458,7 +474,8 @@ def personal(request):
     user = request.user if request.user.is_authenticated() else None
     if user is None:
         return HttpResponseRedirect(reverse('login'))
-    # TODO personal page
+
+    blog = Blog.objects.filter(blog_author=user)
 
     user_create_routes = Route.objects.filter(route_creator__username__exact=user.username)
 
@@ -477,13 +494,32 @@ def personal(request):
 
     user_own_routes_list = list()
     for ur in user_own_routes_relations:
-        user_own_routes_list.append(Route.objects.filter(route_id__exact=ur.id))
+        # user_own_routes_list.append(Route.objects.filter(route_id__exact=ur.route_relation_id)[0])
+        route_own = Route.objects.filter(route_id__exact=ur.route_relation_id)[0]
+        route_own_attractions = list()
+        for i in route_own.get_route_detail():
+            route_own_attractions.append(Attraction.objects.get(attraction_id__exact=int(i)))
+        user_own_routes_list.append({
+            'route_self': route_own,
+            'route_attractions': route_own_attractions,
+        })
+
+    teams_create = Team.objects.filter(team_creator=user)
+
+    teams_relation_member = TeamRelation.objects.filter(team_relation_member=user)
+    teams_member = list()
+    for team_relation in teams_relation_member:
+        team_exact = Team.objects.filter(team_id__exact=team_relation.team_relation_id)[0]
+        teams_member.append(team_exact)
 
     content = {
         'user': user,
         'active_menu': 'personal',
         'route_create_list': user_create_routes_list,
         'route_own': user_own_routes_list,
+        'blog': blog,
+        'teams_create': teams_create,
+        'teams_member': teams_member,
     }
 
     return render(request, 'travel/personal.html', content)

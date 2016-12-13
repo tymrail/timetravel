@@ -63,43 +63,21 @@
                         </div>
                     {% endif %}
                 </div>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Keywords</th>
-                            <th>Create Date</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for team in rec_teams %}
-                            <tr>
-                                <td>
-                                    <a href="/team_detail/?team_id={{ team.team_id }}">
-                                        {{ team.team_name }}
-                                    </a>
-                                </td>
-                                <td>
-                                    {{ team.team_creator }}
-                                </td>
-                                <td>
-                                    <a href="/route_detail/?route_id={{ team.team_route_id }}">
-                                        {{ team.team_route }}
-                                    </a>
-                                </td>
-                                <td>{{ team.team_create_time }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <td colspan="2"></td>
-                            <td>100.00</td>
-                        </tr>
-                        </tfoot>
-                    </table>
+                {% if is_owner is True %}
+                <div class="col-md-12">
+                    <div class="sec-head">
+                        <h2 style="margin: 1em 0;">相关旅游团队推荐</h2>
+                    </div>
+                    {% for team in rec_teams %}
+                        <div class="col-md-4">
+                            <div class="news-itm" style="border: 2px solid #0099CC; padding:1em 2em;">
+                                <h4 style="font-size: 1.5em;">{{ team.team_name }}</h4>
+                                <p>创建者：{{ team.team_creator }}</p>
+                                <a href="/team_detail/?team_id={{ team.team_id }}" class="nws-btn">了解更多</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
                 </div>
             </div>
         </div>

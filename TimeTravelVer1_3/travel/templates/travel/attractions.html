@@ -68,6 +68,27 @@
                                 map.centerAndZoom("{{ city.city_name }}",30);      // 初始化地图,用城市名设置地图中心点
 
                             </script>
+                            <div class="col-md-12">
+                                <div class="col-md-12" style="margin-top: 3em;">
+                                    <div class="sec-head">
+                                        <h2>相关文章</h2>
+                                        <hr/>
+                                    </div>
+                                </div>
+                                <div class="blog">
+                                    {% for b in blog_4_city %}
+                                        <div class="col-md-12">
+                                            <div class="news-itm" style="border: 2px solid #0099CC; padding:1em 2em;">
+                                                <h4 style="font-size: 2em;">{{ b.blog_title }}</h4>
+                                                <p style="font-size: 1em;">{{ b.blog_author }}</p>
+                                                <hr class="news-line">
+                                                <p style="font-size: 1em;">{{ b.blog_intro }}</p>
+                                                <a href="/blog_detail/?blog_id={{ b.blog_id }}" class="nws-btn">Read More</a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
                         </div>
                     </div>
 				</div>

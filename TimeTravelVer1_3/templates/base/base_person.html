@@ -1,0 +1,66 @@
+{% load staticfiles %}
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Read Only by HTML5 UP</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+        <link rel="stylesheet" href="{% static 'personal/css/skel.css' %}" />
+        <link rel="stylesheet" href="{% static 'personal/css/style.css' %}" />
+        <link rel="stylesheet" href="{% static 'personal/css/style-xlarge.css' %}" />
+		<script src="{% static 'personal/js/jquery.min.js' %}"></script>
+		<script src="{% static 'personal/js/jquery.scrollzer.min.js' %}"></script>
+		<script src="{% static 'personal/js/jquery.scrolly.min.js' %}"></script>
+{#		<script src="{% static 'personal/js/skel.min.js' %}"></script>#}
+{#		<script src="{% static 'personal/js/skel-layers.min.js' %}"></script>#}
+{#		<script src="{% static 'personal/js/init.js' %}"></script>#}
+
+	</head>
+	<body>
+		<div id="wrapper">
+
+			<!-- Header -->
+				<section id="header" class="skel-layers-fixed">
+					<header>
+						<span class="image avatar"></span>
+						<h1 id="logo"><a href="#">Time Travel</a></h1>
+						<p>{{ user.username }}</p>
+					</header>
+					<nav id="nav">
+						<ul>
+							<li><a href="{% url 'show_routes' %}">路线</a></li>
+							<li><a href="{% url 'show_teams' %}">队伍</a></li>
+                            <li><a href="{% url 'view_all_blog' %}">文章</a></li>
+							<li><a href="{% url 'create_route' %}">新建路线</a></li>
+							<li><a href="{% url 'create_team' %}">新建队伍</a></li>
+							<li><a href="{% url 'create_blog' %}">新建文章</a></li>
+						</ul>
+					</nav>
+					<footer>
+						<ul class="icons">
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+							<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+					</footer>
+				</section>
+
+			<!-- Main -->
+				{% block content %}{% endblock %}
+
+			<!-- Footer -->
+				<section id="footer">
+					<div class="container">
+						<ul class="copyright">
+							<li>&copy; HIT TymRail</li>
+						</ul>
+					</div>
+				</section>
+
+		</div>
+	</body>
+</html>
