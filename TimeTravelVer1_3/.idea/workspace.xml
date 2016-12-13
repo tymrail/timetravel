@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ec8bfd7-6d0e-4ff4-8cbe-9be0347100da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/templates/travel/team_detail.html" afterPath="$PROJECT_DIR$/travel/templates/travel/team_detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/views.py" afterPath="$PROJECT_DIR$/travel/views.py" />
     </list>
     <ignored path="TimeTravelVer1_3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,6 +50,33 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/travel/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="448" column="0" lean-forward="true" selection-start-line="448" selection-start-column="0" selection-end-line="448" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
+                <element signature="e#440#1856#0" expanded="false" />
+                <element signature="e#1884#2373#0" expanded="false" />
+                <element signature="e#3474#4513#0" expanded="false" />
+                <element signature="e#6872#7945#0" expanded="false" />
+                <element signature="e#7979#9126#0" expanded="false" />
+                <element signature="e#9177#10165#0" expanded="false" />
+                <element signature="e#10213#10883#0" expanded="false" />
+                <element signature="e#10931#11337#0" expanded="false" />
+                <element signature="e#11386#12279#0" expanded="false" />
+                <element signature="e#12312#13552#0" expanded="false" />
+                <element signature="e#13582#14010#0" expanded="false" />
+                <element signature="e#14060#14938#0" expanded="false" />
+                <element signature="e#14985#15516#0" expanded="false" />
+                <element signature="e#15563#15932#0" expanded="false" />
+                <element signature="e#16777#17667#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="create_route.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/travel/templates/travel/create_route.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -87,7 +114,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="team_detail.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="team_detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/travel/templates/travel/team_detail.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="176">
@@ -95,21 +122,6 @@
               <folding>
                 <element signature="e#1541#1563#0#HTML" expanded="true" />
                 <element signature="e#1692#1748#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="attractions.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/travel/templates/travel/attractions.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="554">
-              <caret line="80" column="109" lean-forward="false" selection-start-line="80" selection-start-column="109" selection-end-line="80" selection-end-column="109" />
-              <folding>
-                <element signature="e#3411#3435#0#HTML" expanded="true" />
-                <element signature="e#4027#4050#0#HTML" expanded="true" />
-                <element signature="e#4126#4149#0#HTML" expanded="true" />
-                <element signature="e#4296#4319#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -220,7 +232,6 @@
         <option value="$PROJECT_DIR$/blog/templates/blog/create_blog.html" />
         <option value="$PROJECT_DIR$/blog/templates/blog/view_all_blog.html" />
         <option value="$PROJECT_DIR$/blog/templates/blog/update_blog.html" />
-        <option value="$PROJECT_DIR$/travel/views.py" />
         <option value="$PROJECT_DIR$/travel/templates/travel/attractions.html" />
         <option value="$PROJECT_DIR$/travel/templates/travel/attraction_info.html" />
         <option value="$PROJECT_DIR$/travel/templates/travel/route_detail.html" />
@@ -230,6 +241,7 @@
         <option value="$PROJECT_DIR$/travel/templates/travel/create_route.html" />
         <option value="$PROJECT_DIR$/templates/base/base.html" />
         <option value="$PROJECT_DIR$/travel/templates/travel/team_detail.html" />
+        <option value="$PROJECT_DIR$/travel/views.py" />
       </list>
     </option>
   </component>
@@ -673,7 +685,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1716418" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -684,7 +696,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3253796" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3264642" sideWeight="0.4978678" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3264642" sideWeight="0.4978678" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39804772" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -711,7 +723,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="195" />
+      <option name="time" value="206" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1028,31 +1040,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/travel/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-            <element signature="e#440#1856#0" expanded="false" />
-            <element signature="e#1884#2373#0" expanded="false" />
-            <element signature="e#3474#4513#0" expanded="false" />
-            <element signature="e#6801#7874#0" expanded="false" />
-            <element signature="e#7908#9055#0" expanded="false" />
-            <element signature="e#9106#10094#0" expanded="false" />
-            <element signature="e#10142#10812#0" expanded="false" />
-            <element signature="e#10860#11266#0" expanded="false" />
-            <element signature="e#11315#12208#0" expanded="false" />
-            <element signature="e#12241#13481#0" expanded="false" />
-            <element signature="e#13511#13939#0" expanded="false" />
-            <element signature="e#13989#14867#0" expanded="false" />
-            <element signature="e#14914#15445#0" expanded="false" />
-            <element signature="e#15492#15861#0" expanded="false" />
-            <element signature="e#16666#17556#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/travel/templates/travel/attractions.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="554">
@@ -1152,6 +1139,31 @@
           <folding>
             <element signature="e#1541#1563#0#HTML" expanded="true" />
             <element signature="e#1692#1748#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/travel/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="448" column="0" lean-forward="true" selection-start-line="448" selection-start-column="0" selection-end-line="448" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+            <element signature="e#440#1856#0" expanded="false" />
+            <element signature="e#1884#2373#0" expanded="false" />
+            <element signature="e#3474#4513#0" expanded="false" />
+            <element signature="e#6872#7945#0" expanded="false" />
+            <element signature="e#7979#9126#0" expanded="false" />
+            <element signature="e#9177#10165#0" expanded="false" />
+            <element signature="e#10213#10883#0" expanded="false" />
+            <element signature="e#10931#11337#0" expanded="false" />
+            <element signature="e#11386#12279#0" expanded="false" />
+            <element signature="e#12312#13552#0" expanded="false" />
+            <element signature="e#13582#14010#0" expanded="false" />
+            <element signature="e#14060#14938#0" expanded="false" />
+            <element signature="e#14985#15516#0" expanded="false" />
+            <element signature="e#15563#15932#0" expanded="false" />
+            <element signature="e#16777#17667#0" expanded="false" />
           </folding>
         </state>
       </provider>

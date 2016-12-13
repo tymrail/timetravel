@@ -161,7 +161,9 @@ def show_routes(request):
     user_own_routes_list = list()
     for ur in user_own_routes_relations:
         # user_own_routes_list.append(Route.objects.filter(route_id__exact=ur.route_relation_id)[0])
-        route_own = Route.objects.filter(route_id__exact=ur.route_relation_id)[0]
+        route_own_l = Route.objects.filter(route_id__exact=ur.route_relation_id)
+        if len(route_own_l) > 0:
+            route_own = route_own_l[0]
         route_own_attractions = list()
         for i in route_own.get_route_detail():
             route_own_attractions.append(Attraction.objects.get(attraction_id__exact=int(i)))
@@ -438,8 +440,9 @@ def show_teams(request):
         teams_relation_member = TeamRelation.objects.filter(team_relation_member=user)
         teams_member = list()
         for team_relation in teams_relation_member:
-            team_exact = Team.objects.filter(team_id__exact=team_relation.team_relation_id)[0]
-            teams_member.append(team_exact)
+            team_exact = Team.objects.filter(team_id__exact=team_relation.team_relation_id)
+            if len(team_exact) > 0:
+                teams_member.append(team_exact[0])
 
         content['teams_create'] = teams_create
         content['teams_member'] = teams_member
