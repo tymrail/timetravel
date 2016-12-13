@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ec8bfd7-6d0e-4ff4-8cbe-9be0347100da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/base/base_person.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/TimeTravelVer1_3.iml" afterPath="$PROJECT_DIR$/.idea/TimeTravelVer1_3.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/authonline/static/personal/css/style.css" afterPath="$PROJECT_DIR$/authonline/static/personal/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/models.py" afterPath="$PROJECT_DIR$/blog/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/templates/blog/blog_detail.html" afterPath="$PROJECT_DIR$/blog/templates/blog/blog_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/templates/blog/create_blog.html" afterPath="$PROJECT_DIR$/blog/templates/blog/create_blog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/templates/blog/update_blog.html" afterPath="$PROJECT_DIR$/blog/templates/blog/update_blog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/templates/blog/view_all_blog.html" afterPath="$PROJECT_DIR$/blog/templates/blog/view_all_blog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/personal/css/style.css" afterPath="$PROJECT_DIR$/personal/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base/base.html" afterPath="$PROJECT_DIR$/templates/base/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/templates/travel/attraction_info.html" afterPath="$PROJECT_DIR$/travel/templates/travel/attraction_info.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/templates/travel/attractions.html" afterPath="$PROJECT_DIR$/travel/templates/travel/attractions.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/templates/travel/create_route.html" afterPath="$PROJECT_DIR$/travel/templates/travel/create_route.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/templates/travel/personal.html" afterPath="$PROJECT_DIR$/travel/templates/travel/personal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/templates/travel/route_detail.html" afterPath="$PROJECT_DIR$/travel/templates/travel/route_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/templates/travel/show_routes.html" afterPath="$PROJECT_DIR$/travel/templates/travel/show_routes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/templates/travel/show_teams.html" afterPath="$PROJECT_DIR$/travel/templates/travel/show_teams.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/views.py" afterPath="$PROJECT_DIR$/travel/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/travel/templates/travel/team_detail.html" afterPath="$PROJECT_DIR$/travel/templates/travel/team_detail.html" />
     </list>
     <ignored path="TimeTravelVer1_3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,16 +40,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="blog_detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blog/templates/blog/blog_detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="620">
-              <caret line="40" column="34" lean-forward="false" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="show_teams.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/travel/templates/travel/show_teams.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -91,40 +63,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/travel/views.py">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/base/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+            <state relative-caret-position="3520">
+              <caret line="160" column="81" lean-forward="false" selection-start-line="160" selection-start-column="81" selection-end-line="160" selection-end-column="81" />
               <folding>
-                <element signature="e#0#44#0" expanded="true" />
-                <element signature="e#440#1856#0" expanded="false" />
-                <element signature="e#1884#2373#0" expanded="false" />
-                <element signature="e#3474#4513#0" expanded="false" />
-                <element signature="e#6801#7874#0" expanded="false" />
-                <element signature="e#7908#9055#0" expanded="false" />
-                <element signature="e#9106#10094#0" expanded="false" />
-                <element signature="e#10142#10812#0" expanded="false" />
-                <element signature="e#10860#11266#0" expanded="false" />
-                <element signature="e#11315#12208#0" expanded="false" />
-                <element signature="e#12241#13481#0" expanded="false" />
-                <element signature="e#13511#13939#0" expanded="false" />
-                <element signature="e#13989#14867#0" expanded="false" />
-                <element signature="e#14914#15445#0" expanded="false" />
-                <element signature="e#15492#15861#0" expanded="false" />
-                <element signature="e#16666#17556#0" expanded="false" />
+                <element signature="n#style#0;n#section#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/base/base.html">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/authonline/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="642">
-              <caret line="160" column="81" lean-forward="false" selection-start-line="160" selection-start-column="81" selection-end-line="160" selection-end-column="81" />
+            <state relative-caret-position="88">
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding>
-                <element signature="n#style#0;n#section#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="team_detail.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/travel/templates/travel/team_detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+              <folding>
+                <element signature="e#1541#1563#0#HTML" expanded="true" />
+                <element signature="e#1692#1748#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -235,7 +205,6 @@
         <option value="$PROJECT_DIR$/authonline/migrations/0015_team_team_route.py" />
         <option value="$PROJECT_DIR$/authonline/models.py" />
         <option value="$PROJECT_DIR$/travel/templates/travel/create_team.html" />
-        <option value="$PROJECT_DIR$/travel/templates/travel/team_detail.html" />
         <option value="$PROJECT_DIR$/travel/urls.py" />
         <option value="$PROJECT_DIR$/TimeTravelVer1_3/settings.py" />
         <option value="$PROJECT_DIR$/blog/template/blog/create_blog.html" />
@@ -260,6 +229,7 @@
         <option value="$PROJECT_DIR$/travel/templates/travel/show_teams.html" />
         <option value="$PROJECT_DIR$/travel/templates/travel/create_route.html" />
         <option value="$PROJECT_DIR$/templates/base/base.html" />
+        <option value="$PROJECT_DIR$/travel/templates/travel/team_detail.html" />
       </list>
     </option>
   </component>
@@ -314,6 +284,42 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="travel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TimeTravelVer1_3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TimeTravelVer1_3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="travel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="travel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TimeTravelVer1_3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TimeTravelVer1_3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -332,7 +338,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="blog" />
+              <option name="myItemId" value="authonline" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -844,21 +850,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/travel/templates/travel/team_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="62" column="30" lean-forward="false" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/authonline/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1518">
-          <caret line="86" column="21" lean-forward="false" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blog/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -956,7 +947,7 @@
         <state relative-caret-position="-1232">
           <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding>
-            <element signature="e#0#44#0" expanded="true" />
+            <element signature="e#0#44#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1136,10 +1127,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/base/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
+        <state relative-caret-position="3520">
           <caret line="160" column="81" lean-forward="false" selection-start-line="160" selection-start-column="81" selection-end-line="160" selection-end-column="81" />
           <folding>
             <element signature="n#style#0;n#section#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/authonline/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/travel/templates/travel/team_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+          <folding>
+            <element signature="e#1541#1563#0#HTML" expanded="true" />
+            <element signature="e#1692#1748#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
